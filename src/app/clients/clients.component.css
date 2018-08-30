@@ -1,0 +1,24 @@
+.example-container {
+    display: flex;
+    flex-direction: column;
+    min-width: 300px;
+}
+
+.example-header {
+    /*min-height: 64px;*/
+    /*padding: 0px 0px 0;*/
+}
+
+.mat-form-field {
+    font-size: 15px;
+    width: 100%;
+}
+
+.mat-table {
+    overflow: auto;
+    max-height: 80%;
+}
+
+.mat-raised-button {
+    height: 50px;
+}

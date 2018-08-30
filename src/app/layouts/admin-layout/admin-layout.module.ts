@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {RouterModule} from '@angular/router';
 import {CommonModule} from '@angular/common';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AdminLayoutRoutes} from './admin-layout.routing';
 import {DashboardComponent} from '../../dashboard/dashboard.component';
 import {UserProfileComponent} from '../../user-profile/user-profile.component';
@@ -12,13 +12,101 @@ import {MapsComponent} from '../../maps/maps.component';
 import {NotificationsComponent} from '../../notifications/notifications.component';
 import {UpgradeComponent} from '../../upgrade/upgrade.component';
 
-import {MatButtonModule, MatInputModule, MatRippleModule, MatTooltipModule,} from '@angular/material';
+import {
+    MatAutocompleteModule,
+    MatButtonModule,
+    MatButtonToggleModule,
+    MatCardModule,
+    MatCheckboxModule,
+    MatChipsModule,
+    MatDatepickerModule,
+    MatDialogModule,
+    MatDividerModule,
+    MatExpansionModule,
+    MatGridListModule,
+    MatIconModule,
+    MatInputModule,
+    MatListModule,
+    MatMenuModule,
+    MatNativeDateModule,
+    MatPaginatorModule,
+    MatProgressBarModule,
+    MatProgressSpinnerModule,
+    MatRadioModule,
+    MatRippleModule,
+    MatSelectModule,
+    MatSidenavModule,
+    MatSliderModule,
+    MatSlideToggleModule,
+    MatSnackBarModule,
+    MatSortModule,
+    MatStepperModule,
+    MatTableModule,
+    MatTabsModule,
+    MatToolbarModule,
+    MatTooltipModule,
+} from '@angular/material';
 import {AdminsComponent} from '../../admins/admins.component';
 import {ClientsComponent} from '../../clients/clients.component';
 import {ProductsComponent} from '../../products/products.component';
 
+
+import {CdkTableModule} from '@angular/cdk/table';
+import {HttpClientModule} from '@angular/common/http';
+import {HttpModule} from '@angular/http';
+
+// import {TableOverviewExample} from './app/table-overview-example';
+
+@NgModule({
+    exports: [
+        CdkTableModule,
+        MatAutocompleteModule,
+        MatButtonModule,
+        MatButtonToggleModule,
+        MatCardModule,
+        MatCheckboxModule,
+        MatChipsModule,
+        MatStepperModule,
+        MatDatepickerModule,
+        MatDialogModule,
+        MatDividerModule,
+        MatExpansionModule,
+        MatGridListModule,
+        MatIconModule,
+        MatInputModule,
+        MatListModule,
+        MatMenuModule,
+        MatNativeDateModule,
+        MatPaginatorModule,
+        MatProgressBarModule,
+        MatProgressSpinnerModule,
+        MatRadioModule,
+        MatRippleModule,
+        MatSelectModule,
+        MatSidenavModule,
+        MatSliderModule,
+        MatSlideToggleModule,
+        MatSnackBarModule,
+        MatSortModule,
+        MatTableModule,
+        MatTabsModule,
+        MatToolbarModule,
+        MatTooltipModule,
+    ]
+})
+export class DemoMaterialModule {
+}
+
 @NgModule({
   imports: [
+      // BrowserModule,
+      // BrowserAnimationsModule,
+      HttpModule,
+      HttpClientModule,
+      DemoMaterialModule,
+      MatNativeDateModule,
+      ReactiveFormsModule,
+
     CommonModule,
     RouterModule.forChild(AdminLayoutRoutes),
     FormsModule,
@@ -27,6 +115,7 @@ import {ProductsComponent} from '../../products/products.component';
     MatInputModule,
     MatTooltipModule,
   ],
+    entryComponents: [ClientsComponent],
   declarations: [
       AdminsComponent,
       ClientsComponent,
