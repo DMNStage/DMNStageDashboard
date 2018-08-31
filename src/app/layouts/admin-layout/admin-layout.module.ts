@@ -54,6 +54,7 @@ import {ProductsComponent} from '../../products/products.component';
 import {CdkTableModule} from '@angular/cdk/table';
 import {HttpClientModule} from '@angular/common/http';
 import {HttpModule} from '@angular/http';
+import {AddClientComponent} from '../../add-client/add-client.component';
 
 // import {TableOverviewExample} from './app/table-overview-example';
 
@@ -120,6 +121,7 @@ export class DemoMaterialModule {
       AdminsComponent,
       ClientsComponent,
       ProductsComponent,
+      AddClientComponent,
     DashboardComponent,
     UserProfileComponent,
     TableListComponent,

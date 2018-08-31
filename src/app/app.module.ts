@@ -28,7 +28,7 @@ import {ClientService} from '../services/client.service';
     ],
     declarations: [
         AppComponent,
-        AdminLayoutComponent,
+        AdminLayoutComponent
     ],
     providers: [AdminService, ClientService],
     bootstrap: [AppComponent]

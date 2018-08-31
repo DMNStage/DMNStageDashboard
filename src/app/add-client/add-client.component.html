@@ -1,0 +1,91 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="container margin-top">
+                    <div class="card">
+                        <div class="card-header">Add Contact v2</div>
+                        <div class="card-body">
+                            <form #f="ngForm" (ngSubmit)="onSaveClient(f.value)">
+                                <div class="row">
+                                    <div class="form-group col-sm-6"> <!--<div class="col-sm-4">-->
+                                        <mat-form-field>
+                                            <input matInput placeholder="Username" type="text" name="username"
+                                                   #username="ngModel" ngModel minlength="5" required/>
+                                        </mat-form-field>
+                                        <div *ngIf="username.invalid && (username.dirty || username.touched)"
+                                             class="alert alert-danger">
+                                            <div *ngIf="username.errors.required">- Le pseudo est requis.</div>
+                                            <div *ngIf="username.errors.minlength">- Username must be at least 5
+                                                characters long.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <mat-form-field>
+                                            <input matInput placeholder="Password" type="text" name="password"
+                                                   #password="ngModel" ngModel minlength="5" required/>
+                                        </mat-form-field>
+                                        <div *ngIf="password.invalid && (password.dirty || password.touched)"
+                                             class="alert alert-danger">
+                                            <div *ngIf="password.errors.required">- Le mot de passe est requis.</div>
+                                            <div *ngIf="password.errors.minlength">- Password must be at least 5
+                                                characters long.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-sm-6">
+                                        <mat-form-field>
+                                            <input matInput placeholder="Email" type="email" ngModel name="email"
+                                                   #email="ngModel" ngModel email/>
+                                        </mat-form-field>
+                                        <div *ngIf="email.invalid && (email.dirty || email.touched)"
+                                             class="alert alert-danger">
+                                            <div *ngIf="email.errors.email">- Veuillez entrer un valide email.</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <mat-form-field>
+                                            <input matInput placeholder="Entreprise" type="text" name="organizationName"
+                                                   #organizationName="ngModel" ngModel required/>
+                                        </mat-form-field>
+                                        <div *ngIf="organizationName.invalid && (organizationName.dirty || organizationName.touched)"
+                                             class="alert alert-danger">
+                                            <div *ngIf="organizationName.errors.required">Le nom de l'entreprise est
+                                                requis.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-sm-6">
+                                        <mat-form-field>
+                                            <input matInput placeholder="Telephone" type="text" ngModel name="phone"/>
+                                        </mat-form-field>
+                                    </div>
+                                    <!--<div class="form-group">-->
+                                    <!--<label class="margin-right">Status de compte: </label>-->
+                                    <!--&lt;!&ndash;<input class="form-control" type="number" [(ngModel)]="contact.active" />&ndash;&gt;-->
+                                    <!--<div class="custom-control custom-radio custom-control-inline">-->
+                                    <!--<input type="radio" id="active" ngModel name="active" class="custom-control-input" value=1 />-->
+                                    <!--<label class="custom-control-label" for="active">Active</label>-->
+                                    <!--</div>-->
+                                    <!--<div class="custom-control custom-radio custom-control-inline">-->
+                                    <!--<input type="radio" id="inactive" ngModel name="active" class="custom-control-input" value=0 />-->
+                                    <!--<label class="custom-control-label" for="inactive">Inactive</label>-->
+                                    <!--</div>-->
+                                    <!--</div>-->
+                                </div>
+                                <button mat-raised-button [disabled]="!f.valid" class="btn btn-default" type="submit">
+                                    Save
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
