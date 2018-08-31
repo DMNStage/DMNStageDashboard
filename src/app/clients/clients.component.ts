@@ -3,6 +3,7 @@ import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {HttpClient} from '../../../node_modules/@angular/common/http';
 import {Router} from '@angular/router';
 import {ClientService} from '../../services/client.service';
+import {Client} from '../../model/client.model';
 
 // export interface PeriodicElement {
 //     id: number;
@@ -87,6 +88,26 @@ export class ClientsComponent implements OnInit {
                 }
             )
         ;
+    }
+
+    onEditClient(client: Client) {
+        this.clientservice.currentClient = this.pageClients[this.pageClients.indexOf(client)];
+        this.router.navigate(['editclient', client.id])
+    }
+
+    onDeleteClient(client: Client) {
+        this.clientservice.deleteClient(client.id)
+            .subscribe(
+                data => {
+                    this.pageClients.splice(this.pageClients.indexOf(client));
+                    this.dataSource.data = this.pageClients;
+                },
+                err => {
+                    console.log(JSON.parse(err._body).message);
+                }
+            )
+        ;
+        // console.log(client);
     }
 }
 

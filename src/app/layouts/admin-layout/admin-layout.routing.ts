@@ -12,6 +12,7 @@ import {AdminsComponent} from '../../admins/admins.component';
 import {ClientsComponent} from '../../clients/clients.component';
 import {ProductsComponent} from '../../products/products.component';
 import {AddClientComponent} from '../../add-client/add-client.component';
+import {EditClientComponent} from '../../edit-client/edit-client.component';
 
 export const AdminLayoutRoutes: Routes = [
     // {
@@ -60,6 +61,7 @@ export const AdminLayoutRoutes: Routes = [
     {path: 'clients', component: ClientsComponent},
     {path: 'produits', component: ProductsComponent},
     {path: 'newclient', component: AddClientComponent},
+    {path: 'editclient/:id', component: EditClientComponent},
     { path: 'dashboard',      component: DashboardComponent },
     { path: 'user-profile',   component: UserProfileComponent },
     { path: 'table-list',     component: TableListComponent },

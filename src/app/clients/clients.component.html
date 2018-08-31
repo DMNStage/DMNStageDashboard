@@ -81,15 +81,15 @@
                         <!-- Action Column -->
                         <ng-container matColumnDef="action">
                             <mat-header-cell *matHeaderCellDef mat-sort-header> Action</mat-header-cell>
-                            <mat-cell *matCellDef="">
+                            <mat-cell *matCellDef="let row">
                                 <!--<div class="btn-group">-->
                                     <!--<a type="mat-raised-button"  class="btn btn-warning col-6 clickable">Modifier</a>-->
                                     <!--<a type="mat-raised-button" class="btn btn-danger col-6 clickable">Supprimer</a>-->
 
-                                <button mat-icon-button>
+                                <button mat-icon-button (click)="onEditClient(row)">
                                     <mat-icon aria-label="Modifier">create</mat-icon>
                                 </button>
-                                <button mat-icon-button>
+                                <button mat-icon-button (click)="onDeleteClient(row)">
                                     <mat-icon aria-label="Supprimer">delete_forever</mat-icon>
                                 </button>
                                 <!--<a mat-raised-button class="btn btn-warning">-->

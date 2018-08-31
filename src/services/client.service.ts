@@ -6,7 +6,7 @@ import {Client} from '../model/client.model';
 export class ClientService {
 
     currentClient: any;
-    private readonly access_token = 'c1ed9852-b713-4215-8f15-ac650dea47dc';
+    private readonly access_token = 'b2a1edd6-cbd9-4147-83df-0052e8be40c8';
 
     constructor(public http: HttpClient) {
     }
