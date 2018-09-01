@@ -5,7 +5,7 @@
                 <div class="container margin-top">
                     <div class="card">
                         <div class="card-body">
-                            <form #f="ngForm" (ngSubmit)="onSaveClient(f.value)">
+                            <form #f="ngForm" (ngSubmit)="onSaveAdmin(f.value)">
                                 <div class="row">
                                     <div class="form-group col-sm-6"> <!--<div class="col-sm-4">-->
                                         <mat-form-field>
@@ -37,6 +37,32 @@
                                 <div class="row">
                                     <div class="form-group col-sm-6">
                                         <mat-form-field>
+                                            <input matInput placeholder="Nom" type="text" name="lastName"
+                                                   #lastName="ngModel" ngModel required/>
+                                        </mat-form-field>
+                                        <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)"
+                                             class="alert alert-danger">
+                                            <div *ngIf="lastName.errors.required">Le nom est
+                                                requis.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <mat-form-field>
+                                            <input matInput placeholder="Prenom" type="text" name="firstName"
+                                                   #firstName="ngModel" ngModel required/>
+                                        </mat-form-field>
+                                        <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)"
+                                             class="alert alert-danger">
+                                            <div *ngIf="firstName.errors.required">Le prenom est
+                                                requis.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-sm-6">
+                                        <mat-form-field>
                                             <input matInput placeholder="Email" type="email" ngModel name="email"
                                                    #email="ngModel" ngModel email/>
                                         </mat-form-field>
@@ -45,20 +71,6 @@
                                             <div *ngIf="email.errors.email">- Veuillez entrer un valide email.</div>
                                         </div>
                                     </div>
-                                    <div class="form-group col-sm-6">
-                                        <mat-form-field>
-                                            <input matInput placeholder="Entreprise" type="text" name="organizationName"
-                                                   #organizationName="ngModel" ngModel required/>
-                                        </mat-form-field>
-                                        <div *ngIf="organizationName.invalid && (organizationName.dirty || organizationName.touched)"
-                                             class="alert alert-danger">
-                                            <div *ngIf="organizationName.errors.required">Le nom de l'entreprise est
-                                                requis.
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
                                     <div class="form-group col-sm-6">
                                         <mat-form-field>
                                             <input matInput placeholder="Telephone" type="text" ngModel name="phone"/>

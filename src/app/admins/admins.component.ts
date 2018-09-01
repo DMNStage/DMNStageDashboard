@@ -1,50 +1,68 @@
-import {Component, OnInit} from '@angular/core';
-import {AdminService} from '../../services/admin.service';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
+import {HttpClient} from '../../../node_modules/@angular/common/http';
 import {Router} from '@angular/router';
-import {HttpClient} from '@angular/common/http';
+import {AdminService} from '../../services/admin.service';
 import {Admin} from '../../model/admin.model';
 
 @Component({
     selector: 'app-admins',
     templateUrl: './admins.component.html',
-    styleUrls: ['./admins.component.scss']
+    styleUrls: ['./admins.component.css']
 })
 export class AdminsComponent implements OnInit {
 
-    public pageAdmins: any;
+    displayedColumns = ['id', 'username', 'email', 'phone', 'firstName', 'lastName', 'active', 'action'];
+    pageAdmins: any;
+    dataSource = new MatTableDataSource(this.pageAdmins);
+
+    @ViewChild(MatPaginator) paginator: MatPaginator;
+    @ViewChild(MatSort) sort: MatSort;
 
     constructor(public http: HttpClient, public router: Router, public adminservice: AdminService) {
+
+    }
+
+    ngAfterViewInit() {
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+    }
+
+    applyFilter(filterValue: string) {
+        filterValue = filterValue.trim(); // Remove whitespace
+        filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
+        this.dataSource.filter = filterValue;
     }
 
     ngOnInit() {
+        this.dataSource.paginator = this.paginator;
+
         this.adminservice.getAdmins()
             .subscribe(
                 data => {
                     this.pageAdmins = data;
-                },
-                err => {
-                    console.log(err);
+                    this.dataSource.data = this.pageAdmins;
                 }
             )
         ;
     }
 
     onEditAdmin(admin: Admin) {
-        // this.adminservice.currentAdmin = this.pageAdmins[this.pageAdmins.indexOf(admin)];
-        // this.router.navigate(['edit-contact', admin.id])
+        this.adminservice.currentAdmin = this.pageAdmins[this.pageAdmins.indexOf(admin)];
+        this.router.navigate(['editadmin', admin.id])
     }
 
     onDeleteAdmin(admin: Admin) {
-        // this.adminservice.deleteAdmin(admin.id)
-        //     .subscribe(
-        //         data => {
-        //             this.pageAdmins.splice(this.pageAdmins.indexOf(admin));
-        //         },
-        //         err => {
-        //             console.log(JSON.parse(err._body).message);
-        //         }
-        //     )
-        // ;
+        this.adminservice.deleteAdmin(admin.id)
+            .subscribe(
+                data => {
+                    this.pageAdmins.splice(this.pageAdmins.indexOf(admin));
+                    this.dataSource.data = this.pageAdmins;
+                },
+                err => {
+                    console.log(JSON.parse(err._body).message);
+                }
+            )
+        ;
     }
-
 }

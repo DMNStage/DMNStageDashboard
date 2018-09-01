@@ -5,16 +5,16 @@
                 <div class="container margin-top">
                     <div class="card">
                         <div class="card-body">
-                            <form #f="ngForm" (ngSubmit)="onEditClient(f.value)">
+                            <form #f="ngForm" (ngSubmit)="onEditAdmin(f.value)">
                                 <div class="form-group" hidden>
                                     <label>id: </label>
-                                    <input class="form-control" type="text" name="id" [(ngModel)]="client.id"/>
+                                    <input class="form-control" type="text" name="id" [(ngModel)]="admin.id"/>
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-sm-6">
                                         <mat-form-field>
                                             <input matInput placeholder="Pseudo" type="text" name="username"
-                                                   #username="ngModel" [(ngModel)]="client.username" minlength="5"
+                                                   #username="ngModel" [(ngModel)]="admin.username" minlength="5"
                                                    required/>
                                         </mat-form-field>
                                         <div *ngIf="username.invalid && (username.dirty || username.touched)"
@@ -39,8 +39,34 @@
                                 <div class="row">
                                     <div class="form-group col-sm-6">
                                         <mat-form-field>
+                                            <input matInput placeholder="Nom" type="text" name="firstName"
+                                                   #firstName="ngModel" [(ngModel)]="admin.firstName"
+                                                   required/>
+                                        </mat-form-field>
+                                        <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)"
+                                             class="alert alert-danger">
+                                            <div *ngIf="firstName.errors.required">Le nom est requis.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <mat-form-field>
+                                            <input matInput placeholder="Prenom" type="text" name="lastName"
+                                                   #lastName="ngModel" [(ngModel)]="admin.lastName"
+                                                   required/>
+                                        </mat-form-field>
+                                        <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)"
+                                             class="alert alert-danger">
+                                            <div *ngIf="lastName.errors.required">Le prenom est requis.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-sm-6">
+                                        <mat-form-field>
                                             <input matInput placeholder="Email" type="email" ngModel name="email"
-                                                   #email="ngModel" [(ngModel)]="client.email" email/>
+                                                   #email="ngModel" [(ngModel)]="admin.email" email/>
                                         </mat-form-field>
                                         <div *ngIf="email.invalid && (email.dirty || email.touched)"
                                              class="alert alert-danger">
@@ -49,33 +75,18 @@
                                     </div>
                                     <div class="form-group col-sm-6">
                                         <mat-form-field>
-                                            <input matInput placeholder="Entreprise" type="text" name="organizationName"
-                                                   #organizationName="ngModel" [(ngModel)]="client.organizationName"
-                                                   required/>
-                                        </mat-form-field>
-                                        <div *ngIf="organizationName.invalid && (organizationName.dirty || organizationName.touched)"
-                                             class="alert alert-danger">
-                                            <div *ngIf="organizationName.errors.required">Le nom de l'entreprise est
-                                                requis.
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="form-group col-sm-6">
-                                        <mat-form-field>
                                             <input matInput placeholder="Telephone" type="text"
-                                                   [(ngModel)]="client.phone" name="phone"/>
+                                                   [(ngModel)]="admin.phone" name="phone"/>
                                         </mat-form-field>
                                     </div>
                                     <!--<label class="margin-right">Account Status: </label>-->
-                                    <!--&lt;!&ndash;<input class="form-control" type="number" [(ngModel)]="client.active" />&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<input class="form-control" type="number" [(ngModel)]="admin.active" />&ndash;&gt;-->
                                     <!--<div class="custom-control custom-radio custom-control-inline">-->
-                                    <!--<input type="radio" id="active" [(ngModel)]="client.active" name="active" class="custom-control-input" value=1 />-->
+                                    <!--<input type="radio" id="active" [(ngModel)]="admin.active" name="active" class="custom-control-input" value=1 />-->
                                     <!--<label class="custom-control-label" for="active">Active</label>-->
                                     <!--</div>-->
                                     <!--<div class="custom-control custom-radio custom-control-inline">-->
-                                    <!--<input type="radio" id="inactive" [(ngModel)]="client.active" name="active" class="custom-control-input" value=0 />-->
+                                    <!--<input type="radio" id="inactive" [(ngModel)]="admin.active" name="active" class="custom-control-input" value=0 />-->
                                     <!--<label class="custom-control-label" for="inactive">Inactive</label>-->
                                     <!--</div>-->
                                 </div>

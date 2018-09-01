@@ -1,44 +1,89 @@
 <div class="main-content">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-lg col-md-6 col-sm-6">
-                <div class="card">
-                    <div class="card-header">Contact List</div>
-                    <div class="card-body">
-                        <table class="table table-bordered">
-                            <tr>
-                                <th>Id</th>
-                                <th>Username</th>
-                                <th>First Name</th>
-                                <th>Last Name</th>
-                                <th>Email</th>
-                                <th>Phone</th>
-                                <th>Active</th>
-                                <th>Role</th>
-                                <th>Action</th>
-                            </tr>
-                            <tr *ngFor="let admin of pageAdmins">
-                                <td>{{admin.id}}</td>
-                                <td>{{admin.username}}</td>
-                                <td>{{admin.firstName}}</td>
-                                <td>{{admin.lastName}}</td>
-                                <td>{{admin.email}}</td>
-                                <td>{{admin.phone}}</td>
-                                <td>{{admin.active}}</td>
-                                <td>{{admin.role.name}}</td>
-                                <td>
-                                    <div class="btn-group btn-block">
-                                        <a type="button" (click)="onEditAdmin(admin)"
-                                           class="btn btn-warning col-6 clickable">Edit</a>
-                                        <a type="button" (click)="onDeleteAdmin(admin)"
-                                           class="btn btn-danger col-6 clickable">Delete</a>
-                                    </div>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
+            <div class="col-lg-2 col-md-2 col-sm-2">
+                <div class="example-header">
+                    <!--<mat-card>-->
+                    <mat-form-field>
+                        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Recherche">
+                    </mat-form-field>
+                    <!--</mat-card>-->
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-2">
+                <button mat-raised-button class="btn btn-success" routerLink="/newadmin">
+                    <mat-icon aria-label="Nouveau">add</mat-icon>
+                    Nouveau
+                </button>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="example-container mat-elevation-z8">
+
+                    <mat-table [dataSource]="dataSource" matSort>
+
+                        <ng-container matColumnDef="id">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header> ID</mat-header-cell>
+                            <mat-cell *matCellDef="let row"> {{row.id}}</mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="username">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header> Pseudo</mat-header-cell>
+                            <mat-cell *matCellDef="let row"> {{row.username}}</mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="email">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header> Email</mat-header-cell>
+                            <mat-cell *matCellDef="let row"> {{row.email}}</mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="phone">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header> Telephone</mat-header-cell>
+                            <mat-cell *matCellDef="let row"> {{row.phone}}</mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="firstName">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header> Prenom</mat-header-cell>
+                            <mat-cell *matCellDef="let row"> {{row.firstName}}</mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="lastName">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header> Nom</mat-header-cell>
+                            <mat-cell *matCellDef="let row"> {{row.lastName}}</mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="active">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header> Active</mat-header-cell>
+                            <mat-cell *matCellDef="let row"> {{row.active}}</mat-cell>
+                        </ng-container>
+
+                        <!--<ng-container matColumnDef="role">-->
+                        <!--<mat-header-cell *matHeaderCellDef mat-sort-header> Type</mat-header-cell>-->
+                        <!--<mat-cell *matCellDef="let row"> {{row.role.name}}</mat-cell>-->
+                        <!--</ng-container>-->
+
+                        <ng-container matColumnDef="action">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header> Action</mat-header-cell>
+                            <mat-cell *matCellDef="let row">
+                                <button mat-icon-button (click)="onEditAdmin(row)">
+                                    <mat-icon aria-label="Modifier">create</mat-icon>
+                                </button>
+                                <button mat-icon-button (click)="onDeleteAdmin(row)">
+                                    <mat-icon aria-label="Supprimer">delete_forever</mat-icon>
+                                </button>
+                            </mat-cell>
+                        </ng-container>
+
+                        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                    </mat-table>
+
+                    <mat-paginator [pageSizeOptions]="[7, 15, 30, 100]"></mat-paginator>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<!-- Copyright 2018 Google Inc. All Rights Reserved.
+    Use of this source code is governed by an MIT-style license that
+    can be found in the LICENSE file at http://angular.io/license -->

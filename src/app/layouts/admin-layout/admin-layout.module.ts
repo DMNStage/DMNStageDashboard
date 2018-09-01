@@ -56,6 +56,8 @@ import {HttpClientModule} from '@angular/common/http';
 import {HttpModule} from '@angular/http';
 import {AddClientComponent} from '../../add-client/add-client.component';
 import {EditClientComponent} from '../../edit-client/edit-client.component';
+import {AddAdminComponent} from '../../add-admin/add-admin.component';
+import {EditAdminComponent} from '../../edit-admin/edit-admin.component';
 
 // import {TableOverviewExample} from './app/table-overview-example';
 
@@ -117,13 +119,19 @@ export class DemoMaterialModule {
     MatInputModule,
     MatTooltipModule,
   ],
-    entryComponents: [ClientsComponent],
+    entryComponents: [ClientsComponent, AdminsComponent],
   declarations: [
       AdminsComponent,
+      AddAdminComponent,
+      EditAdminComponent,
+
       ClientsComponent,
-      ProductsComponent,
       AddClientComponent,
       EditClientComponent,
+
+      ProductsComponent,
+
+
     DashboardComponent,
     UserProfileComponent,
     TableListComponent,

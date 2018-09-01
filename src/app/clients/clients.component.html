@@ -11,103 +11,65 @@
                 </div>
             </div>
             <div class="col-lg-2 col-md-2 col-sm-2">
-                <button mat-raised-button class="btn btn-success" routerLink="/newclient">Ajouter un client</button>
+                <button mat-raised-button class="btn btn-success" routerLink="/newclient">
+                    <mat-icon aria-label="Nouveau">add</mat-icon>
+                    Nouveau
+                </button>
             </div>
             <div class="col-lg-12 col-md-12 col-sm-12">
                 <div class="example-container mat-elevation-z8">
 
                     <mat-table [dataSource]="dataSource" matSort>
 
-                        <!-- ID Column -->
                         <ng-container matColumnDef="id">
                             <mat-header-cell *matHeaderCellDef mat-sort-header> ID</mat-header-cell>
                             <mat-cell *matCellDef="let row"> {{row.id}}</mat-cell>
                         </ng-container>
 
-                        <!--&lt;!&ndash; ID Column &ndash;&gt;-->
-                        <!--<ng-container matColumnDef="name">-->
-                        <!--<mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>-->
-                        <!--<mat-cell *matCellDef="let row"> {{row.name}} </mat-cell>-->
-                        <!--</ng-container>-->
-
-                        <!--&lt;!&ndash; ID Column &ndash;&gt;-->
-                        <!--<ng-container matColumnDef="weight">-->
-                        <!--<mat-header-cell *matHeaderCellDef mat-sort-header> weight </mat-header-cell>-->
-                        <!--<mat-cell *matCellDef="let row"> {{row.weight}} </mat-cell>-->
-                        <!--</ng-container>-->
-
-                        <!--&lt;!&ndash; ID Column &ndash;&gt;-->
-                        <!--<ng-container matColumnDef="symbol">-->
-                        <!--<mat-header-cell *matHeaderCellDef mat-sort-header> symbol </mat-header-cell>-->
-                        <!--<mat-cell *matCellDef="let row"> {{row.symbol}} </mat-cell>-->
-                        <!--</ng-container>-->
-
-                        <!-- Name Column -->
                         <ng-container matColumnDef="username">
-                            <mat-header-cell *matHeaderCellDef mat-sort-header> Username</mat-header-cell>
+                            <mat-header-cell *matHeaderCellDef mat-sort-header> Pseudo</mat-header-cell>
                             <mat-cell *matCellDef="let row"> {{row.username}}</mat-cell>
                         </ng-container>
 
-                        <!-- Weight Column -->
                         <ng-container matColumnDef="email">
                             <mat-header-cell *matHeaderCellDef mat-sort-header> Email</mat-header-cell>
                             <mat-cell *matCellDef="let row"> {{row.email}}</mat-cell>
                         </ng-container>
 
-                        <!-- Symbol Column -->
                         <ng-container matColumnDef="phone">
-                            <mat-header-cell *matHeaderCellDef mat-sort-header> Phone</mat-header-cell>
+                            <mat-header-cell *matHeaderCellDef mat-sort-header> Telephone</mat-header-cell>
                             <mat-cell *matCellDef="let row"> {{row.phone}}</mat-cell>
                         </ng-container>
 
-                        <!-- Symbol Column -->
                         <ng-container matColumnDef="organizationName">
-                            <mat-header-cell *matHeaderCellDef mat-sort-header> organizationName</mat-header-cell>
+                            <mat-header-cell *matHeaderCellDef mat-sort-header> Entreprise</mat-header-cell>
                             <mat-cell *matCellDef="let row"> {{row.organizationName}}</mat-cell>
                         </ng-container>
 
-                        <!-- Symbol Column -->
                         <ng-container matColumnDef="active">
                             <mat-header-cell *matHeaderCellDef mat-sort-header> Active</mat-header-cell>
                             <mat-cell *matCellDef="let row"> {{row.active}}</mat-cell>
                         </ng-container>
 
-                        <!-- Symbol Column -->
-                        <ng-container matColumnDef="role">
-                            <mat-header-cell *matHeaderCellDef mat-sort-header> Role</mat-header-cell>
-                            <mat-cell *matCellDef="let row"> {{row.role.name}}</mat-cell>
-                        </ng-container>
+                        <!--<ng-container matColumnDef="role">-->
+                        <!--<mat-header-cell *matHeaderCellDef mat-sort-header> Type</mat-header-cell>-->
+                        <!--<mat-cell *matCellDef="let row"> {{row.role.name}}</mat-cell>-->
+                        <!--</ng-container>-->
 
-                        <!-- Action Column -->
                         <ng-container matColumnDef="action">
                             <mat-header-cell *matHeaderCellDef mat-sort-header> Action</mat-header-cell>
                             <mat-cell *matCellDef="let row">
-                                <!--<div class="btn-group">-->
-                                    <!--<a type="mat-raised-button"  class="btn btn-warning col-6 clickable">Modifier</a>-->
-                                    <!--<a type="mat-raised-button" class="btn btn-danger col-6 clickable">Supprimer</a>-->
-
                                 <button mat-icon-button (click)="onEditClient(row)">
                                     <mat-icon aria-label="Modifier">create</mat-icon>
                                 </button>
                                 <button mat-icon-button (click)="onDeleteClient(row)">
                                     <mat-icon aria-label="Supprimer">delete_forever</mat-icon>
                                 </button>
-                                <!--<a mat-raised-button class="btn btn-warning">-->
-                                <!--<i class="material-icons">create</i>-->
-                                <!--</a>-->
-                                <!--<a mat-raised-button  class="btn btn-danger">-->
-                                <!--<i class="material-icons">delete_forever</i>-->
-                                <!--</a>-->
-
-                                <!--<button mat-raised-button class="btn btn-warning">..</button>-->
-                                <!--<button mat-raised-button class="btn btn-danger">..</button>-->
-                                <!--</div>-->
                             </mat-cell>
                         </ng-container>
 
                         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-                        <mat-row *matRowDef="let row; columns: displayedColumns;">
-                        </mat-row>
+                        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
                     </mat-table>
 
                     <mat-paginator [pageSizeOptions]="[7, 15, 30, 100]"></mat-paginator>

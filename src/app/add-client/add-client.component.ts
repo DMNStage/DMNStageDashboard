@@ -24,7 +24,7 @@ export class AddClientComponent implements OnInit {
                     console.log(JSON.parse(err._body).message);
                 }
             );
-        //setTimeout(this.onSaveClient, 3000 );
+        // setTimeout(this.onSaveClient, 3000 );
         // apres avoir ajouté un client, le client ne s'affiche pas dans le component Clients
         // "'"router.navigate" s'execute avant de "clientservice.saveClient"
         this.router.navigate(['clients']);
