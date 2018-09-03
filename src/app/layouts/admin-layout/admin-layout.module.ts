@@ -58,6 +58,7 @@ import {AddClientComponent} from '../../add-client/add-client.component';
 import {EditClientComponent} from '../../edit-client/edit-client.component';
 import {AddAdminComponent} from '../../add-admin/add-admin.component';
 import {EditAdminComponent} from '../../edit-admin/edit-admin.component';
+import {ConfigComponent} from '../../config/config.component';
 
 // import {TableOverviewExample} from './app/table-overview-example';
 
@@ -131,6 +132,7 @@ export class DemoMaterialModule {
 
       ProductsComponent,
 
+      ConfigComponent,
 
     DashboardComponent,
     UserProfileComponent,

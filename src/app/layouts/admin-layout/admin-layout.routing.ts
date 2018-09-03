@@ -15,6 +15,7 @@ import {AddClientComponent} from '../../add-client/add-client.component';
 import {EditClientComponent} from '../../edit-client/edit-client.component';
 import {AddAdminComponent} from '../../add-admin/add-admin.component';
 import {EditAdminComponent} from '../../edit-admin/edit-admin.component';
+import {ConfigComponent} from '../../config/config.component';
 
 export const AdminLayoutRoutes: Routes = [
     // {
@@ -66,6 +67,7 @@ export const AdminLayoutRoutes: Routes = [
     {path: 'newclient', component: AddClientComponent},
     {path: 'editclient/:id', component: EditClientComponent},
     {path: 'produits', component: ProductsComponent},
+    {path: 'config', component: ConfigComponent},
     { path: 'dashboard',      component: DashboardComponent },
     { path: 'user-profile',   component: UserProfileComponent },
     { path: 'table-list',     component: TableListComponent },
