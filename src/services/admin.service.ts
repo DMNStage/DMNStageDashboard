@@ -6,7 +6,7 @@ import {Admin} from '../model/admin.model';
 export class AdminService {
 
     currentAdmin: any;
-    private readonly access_token = '36cb41bb-5274-4538-b739-804e53f1e5f9';
+    private readonly access_token = 'cfbb3994-a8a7-4ffb-bd53-98e7668035fc';
 
     constructor(public http: HttpClient) {
 

@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {ClientService} from '../../services/client.service';
+import {TreeviewConfig, TreeviewHelper, TreeviewItem} from 'ngx-treeview';
+import {Subproduct} from '../../model/subproduct.model';
 
 declare var $: any;
 
@@ -11,7 +13,25 @@ declare var $: any;
 })
 export class AddClientComponent implements OnInit {
 
+    // container = document.querySelector('#form-group');
+    // ps = new PerfectScrollbar('container');
+
+    dataSource: any;
+    items: TreeviewItem[];
+    selectedItems: any[];
+    selectedItemsList: string[] = [];
+    // values: any[];
+
+    config = TreeviewConfig.create({
+        hasAllCheckBox: false,
+        hasFilter: true,
+        hasCollapseExpand: true,
+        decoupleChildFromParent: false,
+        maxHeight: 600
+    });
+
     constructor(public router: Router, public clientservice: ClientService) {
+
     }
 
     showNotification(from, align, color, message) {
@@ -41,12 +61,70 @@ export class AddClientComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.clientservice.getProducts()
+            .subscribe(
+                data => {
+                    this.dataSource = data;
+
+                    this.dataSource.forEach(
+                        function (product) {
+                            // product.value =  product.id;
+                            product.text = product.name;
+                            product.children = product.subProducts;
+                            delete product.pathName;
+                            delete product.id;
+                            delete product.name;
+                            delete product.subProducts;
+                            product.checked = false;
+                            product.children.forEach(
+                                function (subProduct) {
+                                    subProduct.value = subProduct.id;
+                                    subProduct.text = subProduct.name;
+                                    delete subProduct.step;
+                                    delete subProduct.startTime;
+                                    delete subProduct.endTime;
+                                    delete subProduct.pathName;
+                                    delete subProduct.ext;
+                                    delete subProduct.id;
+                                    delete subProduct.name;
+                                    subProduct.checked = false;
+                                }
+                            );
+                        }
+                    );
+                    this.items = this.convertToTreeViewItem(this.dataSource);
+                }
+            )
+        ;
+    }
+
+    onSelectedChange(selectedItems: any[]) {
+        this.selectedItemsList = [];
+        this.selectedItems = selectedItems;
+        if (this.selectedItems.length !== 0) {
+            this.selectedItems.forEach(item => {
+                const foundItem = TreeviewHelper.findItemInList(this.items, item);
+                this.selectedItemsList.push(foundItem.text);
+            });
+        }
+    }
+
+    convertToTreeViewItem(obj: any[]): any[] {
+        const list = [];
+        obj.forEach(elementObj => list.push(new TreeviewItem(elementObj)));
+        return list;
     }
 
     onSaveClient(dataForm) {
+        const subProduct: Subproduct[] = [];
+        this.selectedItems.forEach(item => {
+            subProduct.push(new Subproduct(item));
+        });
+        dataForm.subProducts = subProduct;
         this.clientservice.saveClient(dataForm)
             .subscribe(
                 data => {
+                    console.log(data);
                     this.showNotification('bottom', 'right', 1, 'L\'utilisateur a été ajouté avec succès.');
                     this.router.navigate(['clients']);
                 },
@@ -54,15 +132,11 @@ export class AddClientComponent implements OnInit {
                     if (err.error.hasOwnProperty('result')) {
                         this.showNotification('bottom', 'right', 0, err.error.result);
                     } else {
-                        console.log(err);
                         this.showNotification('bottom', 'right', 0, 'erreur inconnu.');
                     }
                     // console.log(JSON.parse(err._body).message);
                 }
-            );
-        // setTimeout(this.onSaveClient, 3000 );
-        // apres avoir ajouté un client, le client ne s'affiche pas dans le component Clients
-        // "'"router.navigate" s'execute avant de "clientservice.saveClient"
-        // this.router.navigate(['clients']);
+            )
+        ;
     }
 }
