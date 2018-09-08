@@ -50,7 +50,6 @@ import {AdminsComponent} from '../../admins/admins.component';
 import {ClientsComponent} from '../../clients/clients.component';
 import {ProductsComponent} from '../../products/products.component';
 
-
 import {CdkTableModule} from '@angular/cdk/table';
 import {HttpClientModule} from '@angular/common/http';
 import {HttpModule} from '@angular/http';
@@ -59,6 +58,7 @@ import {EditClientComponent} from '../../edit-client/edit-client.component';
 import {AddAdminComponent} from '../../add-admin/add-admin.component';
 import {EditAdminComponent} from '../../edit-admin/edit-admin.component';
 import {ConfigComponent} from '../../config/config.component';
+import {TreeviewModule} from 'ngx-treeview';
 
 // import {TableOverviewExample} from './app/table-overview-example';
 
@@ -113,6 +113,7 @@ export class DemoMaterialModule {
       ReactiveFormsModule,
 
     CommonModule,
+      TreeviewModule.forRoot(),
     RouterModule.forChild(AdminLayoutRoutes),
     FormsModule,
     MatButtonModule,

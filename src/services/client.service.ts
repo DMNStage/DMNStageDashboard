@@ -6,9 +6,13 @@ import {Client} from '../model/client.model';
 export class ClientService {
 
     currentClient: any;
-    private readonly access_token = '36cb41bb-5274-4538-b739-804e53f1e5f9';
+    private readonly access_token = 'cfbb3994-a8a7-4ffb-bd53-98e7668035fc';
 
     constructor(public http: HttpClient) {
+    }
+
+    getProducts() {
+        return this.http.get('http://localhost:8088/products?access_token=' + this.access_token);
     }
 
     getClients() {

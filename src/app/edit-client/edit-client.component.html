@@ -1,91 +1,139 @@
+<ng-template #itemTemplate let-item="item" let-onCollapseExpand="onCollapseExpand"
+             let-onCheckedChange="onCheckedChange">
+    <div class="form-inline row-item">
+        <i *ngIf="item.children" (click)="onCollapseExpand()" aria-hidden="true" class="fa"
+           [class.fa-caret-right]="item.collapsed"
+           [class.fa-caret-down]="!item.collapsed"></i>
+        <div class="form-check">
+            <mat-checkbox [(ngModel)]="item.checked" (ngModelChange)="onCheckedChange()" [disabled]="item.disabled"
+                          [indeterminate]="item.indeterminate">
+            </mat-checkbox>
+            <label class="form-check-label" (click)="item.checked = !item.checked; onCheckedChange()">
+                {{item.text}}
+            </label>
+        </div>
+    </div>
+</ng-template>
+
 <div class="main-content">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-sm-12">
-                <div class="container margin-top">
-                    <div class="card">
-                        <div class="card-body">
-                            <form #f="ngForm" (ngSubmit)="onEditClient(f.value)">
-                                <div class="form-group" hidden>
-                                    <label>id: </label>
-                                    <input class="form-control" type="text" name="id" [(ngModel)]="client.id"/>
-                                </div>
-                                <div class="row">
-                                    <div class="form-group col-sm-6">
-                                        <mat-form-field>
-                                            <input matInput placeholder="Pseudo" type="text" name="username"
-                                                   #username="ngModel" [(ngModel)]="client.username" minlength="5"
-                                                   required/>
-                                        </mat-form-field>
-                                        <div *ngIf="username.invalid && (username.dirty || username.touched)"
-                                             class="alert alert-danger">
-                                            <div *ngIf="username.errors.required">- Le pseudo est requis.</div>
-                                            <div *ngIf="username.errors.minlength">- Le pseudo doit etre former par au
-                                                moin 5 caractere.
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group col-sm-6">
-                                        <mat-form-field>
-                                            <input matInput placeholder="Mot de passe" type="text" name="password"
-                                                   #password="ngModel" ngModel minlength="5"/>
-                                        </mat-form-field>
-                                        <div class="alert alert-info">
-                                            Laissez la case vide si vous ne voulez pas changer le mot de passe, ou
-                                            entrez un mot de passe de 5 caractere minimum.
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="form-group col-sm-6">
-                                        <mat-form-field>
-                                            <input matInput placeholder="Email" type="email" ngModel name="email"
-                                                   #email="ngModel" [(ngModel)]="client.email" email/>
-                                        </mat-form-field>
-                                        <div *ngIf="email.invalid && (email.dirty || email.touched)"
-                                             class="alert alert-danger">
-                                            <div *ngIf="email.errors.email">- Veuillez entrer un valide email.</div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group col-sm-6">
-                                        <mat-form-field>
-                                            <input matInput placeholder="Entreprise" type="text" name="organizationName"
-                                                   #organizationName="ngModel" [(ngModel)]="client.organizationName"
-                                                   required/>
-                                        </mat-form-field>
-                                        <div *ngIf="organizationName.invalid && (organizationName.dirty || organizationName.touched)"
-                                             class="alert alert-danger">
-                                            <div *ngIf="organizationName.errors.required">Le nom de l'entreprise est
-                                                requis.
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="form-group col-sm-6">
-                                        <mat-form-field>
-                                            <input matInput placeholder="Telephone" type="text"
-                                                   [(ngModel)]="client.phone" name="phone"/>
-                                        </mat-form-field>
-                                    </div>
-                                    <!--<label class="margin-right">Account Status: </label>-->
-                                    <!--&lt;!&ndash;<input class="form-control" type="number" [(ngModel)]="client.active" />&ndash;&gt;-->
-                                    <!--<div class="custom-control custom-radio custom-control-inline">-->
-                                    <!--<input type="radio" id="active" [(ngModel)]="client.active" name="active" class="custom-control-input" value=1 />-->
-                                    <!--<label class="custom-control-label" for="active">Active</label>-->
-                                    <!--</div>-->
-                                    <!--<div class="custom-control custom-radio custom-control-inline">-->
-                                    <!--<input type="radio" id="inactive" [(ngModel)]="client.active" name="active" class="custom-control-input" value=0 />-->
-                                    <!--<label class="custom-control-label" for="inactive">Inactive</label>-->
-                                    <!--</div>-->
-                                </div>
-                                <button mat-raised-button [disabled]="!f.valid" class="btn btn-default" type="submit">
-                                    Save
-                                </button>
-                            </form>
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <ngx-treeview [config]="config" [items]="treeViewItem" [itemTemplate]="itemTemplate"
+                                              (selectedChange)="onSelectedChange($event)">
+                                </ngx-treeview>
+                                <!--<ngx-treeview [config]="config" [items]="items" [itemTemplate]="itemTemplate" (filterChange)="onFilterChange($event)" (selectedChange)="values = $event">-->
+                                <!--</ngx-treeview>-->
+                            </div>
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="col-sm-8">
+                <!--<div class="container margin-top">-->
+                <div class="card">
+                    <div class="card-body">
+                        <form #f="ngForm" (ngSubmit)="onEditClient(f.value)">
+                            <div class="form-group" hidden>
+                                <label>id: </label>
+                                <input class="form-control" type="text" name="id" [(ngModel)]="client.id"/>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-6">
+                                    <mat-form-field>
+                                        <input matInput placeholder="Pseudo" type="text" name="username"
+                                               #username="ngModel" [(ngModel)]="client.username" minlength="5"
+                                               required/>
+                                    </mat-form-field>
+                                    <div *ngIf="username.invalid && (username.dirty || username.touched)"
+                                         class="alert alert-danger">
+                                        <div *ngIf="username.errors.required">- Le pseudo est requis.</div>
+                                        <div *ngIf="username.errors.minlength">- Le pseudo doit etre former par au
+                                            moin 5 caractere.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <mat-form-field>
+                                        <input matInput placeholder="Mot de passe" type="text" name="password"
+                                               #password="ngModel" ngModel minlength="5"/>
+                                    </mat-form-field>
+                                    <div class="alert alert-info">
+                                        Laissez la case vide si vous ne voulez pas changer le mot de passe, ou
+                                        entrez un mot de passe de 5 caractere minimum.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-6">
+                                    <mat-form-field>
+                                        <input matInput placeholder="Email" type="email" ngModel name="email"
+                                               #email="ngModel" [(ngModel)]="client.email" email/>
+                                    </mat-form-field>
+                                    <div *ngIf="email.invalid && (email.dirty || email.touched)"
+                                         class="alert alert-danger">
+                                        <div *ngIf="email.errors.email">- Veuillez entrer un valide email.</div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <mat-form-field>
+                                        <input matInput placeholder="Entreprise" type="text" name="organizationName"
+                                               #organizationName="ngModel" [(ngModel)]="client.organizationName"
+                                               required/>
+                                    </mat-form-field>
+                                    <div *ngIf="organizationName.invalid && (organizationName.dirty || organizationName.touched)"
+                                         class="alert alert-danger">
+                                        <div *ngIf="organizationName.errors.required">Le nom de l'entreprise est
+                                            requis.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-6">
+                                    <mat-form-field>
+                                        <input matInput placeholder="Telephone" type="text"
+                                               [(ngModel)]="client.phone" name="phone"/>
+                                    </mat-form-field>
+                                </div>
+                                <!--<label class="margin-right">Account Status: </label>-->
+                                <!--&lt;!&ndash;<input class="form-control" type="number" [(ngModel)]="client.active" />&ndash;&gt;-->
+                                <!--<div class="custom-control custom-radio custom-control-inline">-->
+                                <!--<input type="radio" id="active" [(ngModel)]="client.active" name="active" class="custom-control-input" value=1 />-->
+                                <!--<label class="custom-control-label" for="active">Active</label>-->
+                                <!--</div>-->
+                                <!--<div class="custom-control custom-radio custom-control-inline">-->
+                                <!--<input type="radio" id="inactive" [(ngModel)]="client.active" name="active" class="custom-control-input" value=0 />-->
+                                <!--<label class="custom-control-label" for="inactive">Inactive</label>-->
+                                <!--</div>-->
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-12">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h4 class="card-title">Produit:</h4>
+                                        </div>
+                                        <div class="card-body">
+                                            <mat-chip-list>
+                                                <mat-chip class="mb-1" *ngFor="let selectedItem of selectedItemsText">
+                                                    {{selectedItem}}
+                                                </mat-chip>
+                                            </mat-chip-list>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button mat-raised-button [disabled]="!f.valid" class="btn btn-default" type="submit">
+                                Save
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                <!--</div>-->
             </div>
         </div>
     </div>
