@@ -3,6 +3,7 @@ import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {HttpClient} from '../../../node_modules/@angular/common/http';
 import {Router} from '@angular/router';
 import {AdminService} from '../../services/admin.service';
+import {AuthService} from '../../services/auth.service';
 import {Admin} from '../../model/admin.model';
 
 @Component({
@@ -19,7 +20,7 @@ export class AdminsComponent implements OnInit {
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
 
-    constructor(public http: HttpClient, public router: Router, public adminservice: AdminService) {
+    constructor(public http: HttpClient, public router: Router, public adminservice: AdminService, public authservice: AuthService) {
 
     }
 
@@ -35,6 +36,13 @@ export class AdminsComponent implements OnInit {
     }
 
     ngOnInit() {
+        console.log('accesstoken:')
+        console.log(this.authservice.accessToken);
+        if (!this.authservice.accessToken) {
+            console.log('Redirecting to /dashboard (no accesstoken)');
+            this.router.navigate(['dashboard'])
+        }
+
         this.dataSource.paginator = this.paginator;
 
         this.adminservice.getAdmins()
