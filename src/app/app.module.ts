@@ -13,6 +13,9 @@ import {AdminLayoutComponent} from './layouts/admin-layout/admin-layout.componen
 import {AdminService} from '../services/admin.service';
 import {ClientService} from '../services/client.service';
 import {AuthService} from '../services/auth.service';
+import {ConfigService} from '../services/config.service';
+import {ProductService} from '../services/product.service';
+import {SubproductService} from '../services/subproduct.service';
 
 @NgModule({
     imports: [
@@ -31,7 +34,7 @@ import {AuthService} from '../services/auth.service';
         AppComponent,
         AdminLayoutComponent
     ],
-    providers: [AdminService, ClientService, AuthService],
+    providers: [AdminService, ClientService, ConfigService, ProductService, SubproductService, AuthService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

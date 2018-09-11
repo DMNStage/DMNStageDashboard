@@ -61,8 +61,11 @@ export class ClientsComponent implements OnInit {
         this.clientservice.deleteClient(client.id)
             .subscribe(
                 data => {
-                    this.pageClients.splice(this.pageClients.indexOf(client));
+                    this.pageClients.splice(this.pageClients.indexOf(client), 1);
                     this.dataSource.data = this.pageClients;
+                    setTimeout(() => {
+                        this.dataSource.paginator = this.paginator;
+                    });
                 },
                 err => {
                     console.log(JSON.parse(err._body).message);

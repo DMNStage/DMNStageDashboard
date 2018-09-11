@@ -59,6 +59,7 @@ import {AddAdminComponent} from '../../add-admin/add-admin.component';
 import {EditAdminComponent} from '../../edit-admin/edit-admin.component';
 import {ConfigComponent} from '../../config/config.component';
 import {TreeviewModule} from 'ngx-treeview';
+import {EditConfigComponent} from '../../edit-config/edit-config.component';
 
 // import {TableOverviewExample} from './app/table-overview-example';
 
@@ -134,6 +135,7 @@ export class DemoMaterialModule {
       ProductsComponent,
 
       ConfigComponent,
+      EditConfigComponent,
 
     DashboardComponent,
     UserProfileComponent,

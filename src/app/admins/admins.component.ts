@@ -64,8 +64,11 @@ export class AdminsComponent implements OnInit {
         this.adminservice.deleteAdmin(admin.id)
             .subscribe(
                 data => {
-                    this.pageAdmins.splice(this.pageAdmins.indexOf(admin));
+                    this.pageAdmins.splice(this.pageAdmins.indexOf(admin), 1);
                     this.dataSource.data = this.pageAdmins;
+                    setTimeout(() => {
+                        this.dataSource.paginator = this.paginator;
+                    });
                 },
                 err => {
                     console.log(JSON.parse(err._body).message);

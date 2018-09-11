@@ -5,7 +5,8 @@ import {Token} from '../model/token.model';
 @Injectable()
 export class AuthService {
 
-    host = 'https://api.dmnstage.com';
+    // host = 'https://api.dmnstage.com';
+    host = 'http://localhost:8088';
 
     accessToken: string;
     constructor(public http: HttpClient) {

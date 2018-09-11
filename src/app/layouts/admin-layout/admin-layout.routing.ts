@@ -16,6 +16,7 @@ import {EditClientComponent} from '../../edit-client/edit-client.component';
 import {AddAdminComponent} from '../../add-admin/add-admin.component';
 import {EditAdminComponent} from '../../edit-admin/edit-admin.component';
 import {ConfigComponent} from '../../config/config.component';
+import {EditConfigComponent} from '../../edit-config/edit-config.component';
 
 export const AdminLayoutRoutes: Routes = [
     // {
@@ -68,6 +69,7 @@ export const AdminLayoutRoutes: Routes = [
     {path: 'editclient/:id', component: EditClientComponent},
     {path: 'produits', component: ProductsComponent},
     {path: 'config', component: ConfigComponent},
+    {path: 'editconfig', component: EditConfigComponent},
     { path: 'dashboard',      component: DashboardComponent },
     { path: 'user-profile',   component: UserProfileComponent },
     { path: 'table-list',     component: TableListComponent },

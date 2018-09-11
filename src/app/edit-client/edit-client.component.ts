@@ -144,7 +144,7 @@ export class EditClientComponent implements OnInit {
     onEditClient(dataForm) {
         const subProduct: Subproduct[] = [];
         this.selectedItemsValue.forEach(item => {
-            subProduct.push(new Subproduct(item));
+            subProduct.push(new Subproduct(item, 'test', 'test', '00:00', '00:00', 0, 'test'));
         });
         dataForm.subProducts = subProduct;
         this.clientservice.editClient(dataForm)
