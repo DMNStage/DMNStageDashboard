@@ -1,0 +1,56 @@
+<div class="container mx-auto" style="width: 600px;">
+
+    <div class="card">
+        <!--Header-->
+        <div class="card-header card-header-danger text-center">
+            <h4 class="card-title"><i class="fa fa-lock"></i> Login:</h4>
+        </div>
+        <div class="card-body">
+            <!--Body-->
+            <form #f="ngForm" class="mx-auto" (ngSubmit)="OnSubmit(username.value,password.value)">
+                <div class="row mt-4">
+
+                    <div class="form-group col-sm-12"> <!--<div class="col-sm-4">-->
+                        <mat-form-field>
+                            <mat-icon matPrefix>account_circle</mat-icon>
+                            <input matInput placeholder="Pseudo" type="text" name="username"
+                                   #username="ngModel" ngModel required/>
+                        </mat-form-field>
+                        <div *ngIf="username.invalid && (username.dirty || username.touched)">
+                            <mat-error *ngIf="username.invalid">Le pseudo est requis.</mat-error>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-12"> <!--<div class="col-sm-4">-->
+                        <mat-form-field>
+                            <mat-icon matPrefix>vpn_key</mat-icon>
+                            <input matInput placeholder="Mot de pass" type="text" name="password"
+                                   #password="ngModel" ngModel required/>
+                        </mat-form-field>
+                        <div *ngIf="password.invalid && (password.dirty || password.touched)">
+                            <mat-error *ngIf="password.invalid">Le mot de pass est requis.</mat-error>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <button mat-raised-button type="submit" [disabled]="!f.valid" class="btn btn-danger pull-center">
+                        Login
+                    </button>
+                </div>
+            </form>
+        </div>
+
+
+        <!--Footer-->
+        <div *ngIf="isLoginError" class="modal-footer">
+            <div class="red-text center error-message">
+                <i class="material-icons">error</i> Incorrect username or password
+            </div>
+        </div>
+
+    </div>
+</div>

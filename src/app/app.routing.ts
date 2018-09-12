@@ -1,23 +1,34 @@
-import { NgModule } from '@angular/core';
-import { CommonModule, } from '@angular/common';
-import { BrowserModule  } from '@angular/platform-browser';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {CommonModule,} from '@angular/common';
+import {BrowserModule} from '@angular/platform-browser';
+import {RouterModule, Routes} from '@angular/router';
 
-import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+import {AdminLayoutComponent} from './layouts/admin-layout/admin-layout.component';
+import {SignInComponent} from './sign-in/sign-in.component';
 
-const routes: Routes =[
-  {
-    path: '',
-    redirectTo: 'dashboard',
-    pathMatch: 'full',
-  }, {
-    path: '',
-    component: AdminLayoutComponent,
-    children: [
-        {
-      path: '',
-      loadChildren: './layouts/admin-layout/admin-layout.module#AdminLayoutModule'
-  }]}
+const routes: Routes = [
+    {
+        path: 'login',
+        component: SignInComponent
+    },
+    {
+        path: '',
+        redirectTo: 'dashboard',
+        pathMatch: 'full'
+    },
+    {
+        path: '',
+        component: AdminLayoutComponent,
+        children: [
+            {
+                path: '',
+                loadChildren: './layouts/admin-layout/admin-layout.module#AdminLayoutModule'
+            }]
+    },
+    {
+        path: '**',
+        redirectTo: 'dashboard'
+    }
     // { path: 'dashboard',      component: DashboardComponent },
     // { path: 'user-profile',   component: UserProfileComponent },
     // { path: 'table-list',     component: TableListComponent },

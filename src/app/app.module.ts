@@ -1,7 +1,7 @@
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {RouterModule} from '@angular/router';
 
 import {AppRoutingModule} from './app.routing';
@@ -13,6 +13,10 @@ import {AdminLayoutComponent} from './layouts/admin-layout/admin-layout.componen
 import {AdminService} from '../services/admin.service';
 import {ClientService} from '../services/client.service';
 import {AuthService} from '../services/auth.service';
+import {SignInComponent} from './sign-in/sign-in.component';
+import {AuthGuard} from '../services/auth/auth.guard';
+import {AuthInterceptor} from '../services/auth/auth.interceptor';
+import {MatIconModule, MatInputModule} from '@angular/material';
 
 @NgModule({
     imports: [
@@ -23,15 +27,23 @@ import {AuthService} from '../services/auth.service';
         ComponentsModule,
         RouterModule,
         AppRoutingModule,
+        MatInputModule,
+        MatIconModule,
         AgmCoreModule.forRoot({
             apiKey: 'YOUR_GOOGLE_MAPS_API_KEY'
         })
     ],
     declarations: [
         AppComponent,
-        AdminLayoutComponent
+        AdminLayoutComponent,
+        SignInComponent
     ],
-    providers: [AdminService, ClientService, AuthService],
+    providers: [AdminService, ClientService, AuthService, AuthGuard,
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: AuthInterceptor,
+            multi: true
+        }],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

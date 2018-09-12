@@ -6,7 +6,7 @@ export class Client {
     email: string = '';
     phone: string = '';
     organizationName: string = '';
-    active: boolean = false;
+    active: boolean = true;
     subProducts:
         {
             id: number,

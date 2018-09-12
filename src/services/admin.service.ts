@@ -13,22 +13,22 @@ export class AdminService {
     }
 
     getAdmins() {
-        return this.http.get(this.authservice.host + '/users?type=admin&access_token=' + this.authservice.accessToken);
+        return this.http.get(this.authservice.host + '/users?type=admin');
     }
 
     getAdmin(id: number) {
-        return this.http.get(this.authservice.host + '/users/' + id + '?access_token=' + this.authservice.accessToken);
+        return this.http.get(this.authservice.host + '/users/' + id);
     }
 
     saveAdmin(admin: Admin) {
-        return this.http.post(this.authservice.host + '/users/admin?access_token=' + this.authservice.accessToken, admin);
+        return this.http.post(this.authservice.host + '/users/admin', admin);
     }
 
     editAdmin(admin: Admin) {
-        return this.http.put(this.authservice.host + '/users/admin/' + admin.id + '?access_token=' + this.authservice.accessToken, admin);
+        return this.http.put(this.authservice.host + '/users/admin/' + admin.id, admin);
     }
 
     deleteAdmin(id: number) {
-        return this.http.delete(this.authservice.host + '/users/' + id + '?access_token=' + this.authservice.accessToken);
+        return this.http.delete(this.authservice.host + '/users/' + id);
     }
 }

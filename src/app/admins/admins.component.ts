@@ -36,12 +36,6 @@ export class AdminsComponent implements OnInit {
     }
 
     ngOnInit() {
-        console.log('accesstoken:')
-        console.log(this.authservice.accessToken);
-        if (!this.authservice.accessToken) {
-            console.log('Redirecting to /dashboard (no accesstoken)');
-            this.router.navigate(['dashboard'])
-        }
 
         this.dataSource.paginator = this.paginator;
 

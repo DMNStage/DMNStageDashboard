@@ -6,6 +6,7 @@ export class Token {
     expires_in: number;
     scope: string;
     username: string;
+    expiration: string;
     constructor() {
     }
 

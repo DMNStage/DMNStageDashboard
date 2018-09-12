@@ -1,42 +1,126 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
+import {HttpClient, HttpErrorResponse, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Token} from '../model/token.model';
+import {Router} from '@angular/router';
+import {catchError, map} from 'rxjs/operators';
+import {of} from 'rxjs/observable/of';
 
 @Injectable()
 export class AuthService {
 
-    host = 'https://api.dmnstage.com';
+    // host = 'https://api.dmnstage.com';
+    readonly host = 'http://localhost:8088';
+    private readonly tokenLocalStorageDataKey = 'TokenData';
+    private readonly clientId = 'ClientId';
 
-    accessToken: string;
-    constructor(public http: HttpClient) {
+    constructor(public http: HttpClient, private router: Router) {
     }
-    sendRequest() {
-        console.log('calling it');
-        const username = 'ClientId';
-        const password = 'secret';
 
-        const tokenHeaders = new HttpHeaders({
+    authenticateUser(username, password) {
+        let data = new HttpParams();
+        data = data.set('username', username);
+        data = data.set('password', password);
+        data = data.set('grant_type', 'password');
+
+        const clientId = 'Q2xpZW50SWQ=';
+        const secret = 'c2VjcmV0';
+        const reqHeader = new HttpHeaders({
             'Content-Type': 'application/x-www-form-urlencoded',
-            'Authorization': 'Basic ' + btoa(username + ':' + password)
+            'Authorization': 'Basic ' + btoa(atob(clientId) + ':' + atob(secret)),
+            'No-Auth': 'true'
         });
+        return this.http.post<Token>(this.host + '/oauth/token', data, {headers: reqHeader})
+    }
+
+    getTokenDataFromLocalStorage(): Token {
+        try {
+            return JSON.parse(localStorage.getItem(this.tokenLocalStorageDataKey));
+        } catch (e) {
+            return null;
+        }
+    }
+
+    checkTokenData(data: Token) {
+        console.log('Checking Token ...');
+        const expirationDate = new Date(data.expiration);
+        const now = new Date();
+        now.setMinutes(now.getMinutes() + 0); // now + 2 minutes
+
+        if (expirationDate > now) {
+            console.log('Token not expired');
+            console.log('Checking token server side ...');
+
+            const reqHeader = new HttpHeaders({
+                'Authorization': 'Bearer ' + data.access_token,
+                'No-Auth': 'true'
+            });
+            return this.http.head(this.host + '/checktoken', {headers: reqHeader})
+                .pipe(map(
+                    (result) => {
+                        // Server send empty response with 200 http status so the token is valid
+                        console.log('Server side said token valid');
+                        return true;
+                    }), catchError((err: HttpErrorResponse) => {
+                        console.log('Server side said token invalid');
+                        return of(false);
+                    })
+                );
+        } else {
+            console.log('Token expired');
+            return of(false);
+        }
+    }
+
+    getNewTokenDataFromRefreshToken(refreshtoken: string) {
+
+        console.log('getting new access token from refresh token')
+        let data = new HttpParams();
+        data = data.set('refresh_token', refreshtoken);
+        data = data.set('grant_type', 'refresh_token');
+
+        const clientId = 'Q2xpZW50SWQ=';
+        const secret = 'c2VjcmV0';
+        const reqHeader = new HttpHeaders({
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Authorization': 'Basic ' + btoa(atob(clientId) + ':' + atob(secret)),
+            'No-Auth': 'true'
+        });
+        return this.http.post<Token>(this.host + '/oauth/token', data, {headers: reqHeader})
+
+    }
+
+    storeTokenData(data: Token) {
+        console.log('Storing token to local storage');
+        localStorage.setItem(this.tokenLocalStorageDataKey, JSON.stringify(data));
+    }
+
+    clearTokenData() {
+        console.log('Removing old Token Data from local storage');
+        localStorage.removeItem(this.tokenLocalStorageDataKey);
+    }
+
+    revokeToken(tokenData: Token) {
 
         let body = new HttpParams();
-        body = body.set('username', 'kumohira');
-        body = body.set('password', '654321');
-        body = body.set('grant_type', 'password');
-        return this.http.post<Token>(this.host + '/oauth/token', body, {headers: tokenHeaders});
+        body = body.set('clientid', this.clientId);
+        body = body.set('username', tokenData.username);
+        body = body.set('access_token', tokenData.access_token);
+        return this.http.post(this.host + '/revoke_token', body);
     }
 
-    getAccessToken() {
-        return this.sendRequest()
-            .subscribe(
-                data => {
-                    console.log(data.refresh_token);
-                    this.accessToken = data.access_token;
+    logout() {
+        const tokenData = this.getTokenDataFromLocalStorage();
+        if (tokenData != null) {
+            this.revokeToken(tokenData).subscribe(response => {
+                    console.log(response);
+                    localStorage.removeItem(this.tokenLocalStorageDataKey);
+                    this.router.navigate(['/login']);
                 },
                 err => {
-                    console.log(JSON.parse(err._body).message);
-                }
-            );
+                    console.log('Can\'t revoke token server side');
+                    localStorage.removeItem(this.tokenLocalStorageDataKey);
+                    this.router.navigate(['/login']);
+                })
+        }
     }
 }
