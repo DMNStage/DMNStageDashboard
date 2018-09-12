@@ -17,6 +17,8 @@ import {AddAdminComponent} from '../../add-admin/add-admin.component';
 import {EditAdminComponent} from '../../edit-admin/edit-admin.component';
 import {ConfigComponent} from '../../config/config.component';
 import {EditConfigComponent} from '../../edit-config/edit-config.component';
+import {AddProductComponent} from '../../add-product/add-product.component';
+import {AddSubproductComponent} from '../../add-subproduct/add-subproduct.component';
 
 export const AdminLayoutRoutes: Routes = [
     // {
@@ -67,7 +69,9 @@ export const AdminLayoutRoutes: Routes = [
     {path: 'clients', component: ClientsComponent},
     {path: 'newclient', component: AddClientComponent},
     {path: 'editclient/:id', component: EditClientComponent},
-    {path: 'produits', component: ProductsComponent},
+    {path: 'products', component: ProductsComponent},
+    {path: 'newproduct', component: AddProductComponent},
+    {path: 'newsubproduct', component: AddSubproductComponent},
     {path: 'config', component: ConfigComponent},
     {path: 'editconfig', component: EditConfigComponent},
     { path: 'dashboard',      component: DashboardComponent },

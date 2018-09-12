@@ -76,20 +76,16 @@
                                             <input matInput placeholder="Telephone" type="text" ngModel name="phone"/>
                                         </mat-form-field>
                                     </div>
-                                    <!--<div class="form-group">-->
-                                    <!--<label class="margin-right">Status de compte: </label>-->
-                                    <!--&lt;!&ndash;<input class="form-control" type="number" [(ngModel)]="contact.active" />&ndash;&gt;-->
-                                    <!--<div class="custom-control custom-radio custom-control-inline">-->
-                                    <!--<input type="radio" id="active" ngModel name="active" class="custom-control-input" value=1 />-->
-                                    <!--<label class="custom-control-label" for="active">Active</label>-->
-                                    <!--</div>-->
-                                    <!--<div class="custom-control custom-radio custom-control-inline">-->
-                                    <!--<input type="radio" id="inactive" ngModel name="active" class="custom-control-input" value=0 />-->
-                                    <!--<label class="custom-control-label" for="inactive">Inactive</label>-->
-                                    <!--</div>-->
-                                    <!--</div>-->
                                 </div>
-                                <button mat-raised-button [disabled]="!f.valid" class="btn btn-default" type="submit">
+                                <div class="row">
+                                    <div class="form-group col-sm-6">
+                                        <mat-radio-group ngModel name="active">
+                                            <mat-radio-button value="true">Actif</mat-radio-button>
+                                            <mat-radio-button value="false">Inactif</mat-radio-button>
+                                        </mat-radio-group>
+                                    </div>
+                                </div>
+                                <button mat-raised-button [disabled]="!f.valid" class="btn btn-success" type="submit">
                                     Valider
                                 </button>
                             </form>
