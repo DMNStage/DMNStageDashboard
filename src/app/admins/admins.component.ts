@@ -2,9 +2,9 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {HttpClient} from '../../../node_modules/@angular/common/http';
 import {Router} from '@angular/router';
-import {AdminService} from '../../services/admin.service';
-import {AuthService} from '../../services/auth.service';
-import {Admin} from '../../model/admin.model';
+import {AdminService} from '../services/admin.service';
+import {AuthService} from '../services/auth.service';
+import {Admin} from '../model/admin.model';
 
 @Component({
     selector: 'app-admins',

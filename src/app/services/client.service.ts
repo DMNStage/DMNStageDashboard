@@ -24,7 +24,7 @@ export class ClientService {
     }
 
     getClientsBySubProduct(id: number) {
-        return this.http.get<Array<string>>(this.authservice.host + '/clientsbysubproduct/' + id + '?access_token=' + this.authservice.accessToken);
+        return this.http.get<Array<string>>(this.authservice.host + '/clientsbysubproduct/' + id);
     }
 
     saveClient(client: Client) {

@@ -2,11 +2,11 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
-import {ProductService} from '../../services/product.service';
-import {Product} from '../../model/product.model';
-import {Subproduct} from '../../model/subproduct.model';
-import {SubproductService} from '../../services/subproduct.service';
-import {ClientService} from '../../services/client.service';
+import {ProductService} from '../services/product.service';
+import {Product} from '../model/product.model';
+import {Subproduct} from '../model/subproduct.model';
+import {SubproductService} from '../services/subproduct.service';
+import {ClientService} from '../services/client.service';
 
 declare var $: any;
 

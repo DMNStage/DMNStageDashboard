@@ -8,8 +8,9 @@ import {of} from 'rxjs/observable/of';
 @Injectable()
 export class AuthService {
 
-    // host = 'https://api.dmnstage.com';
-    readonly host = 'http://localhost:8088';
+    host = 'https://api.dmnstage.com';
+    // readonly host = 'http://localhost:8088';
+
     private readonly tokenLocalStorageDataKey = 'TokenData';
     private readonly clientId = 'ClientId';
 
@@ -112,7 +113,6 @@ export class AuthService {
         const tokenData = this.getTokenDataFromLocalStorage();
         if (tokenData != null) {
             this.revokeToken(tokenData).subscribe(response => {
-                    console.log(response);
                     localStorage.removeItem(this.tokenLocalStorageDataKey);
                     this.router.navigate(['/login']);
                 },

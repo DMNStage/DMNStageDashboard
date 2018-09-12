@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {AdminService} from '../../services/admin.service';
+import {AdminService} from '../services/admin.service';
 
 declare var $: any;
 

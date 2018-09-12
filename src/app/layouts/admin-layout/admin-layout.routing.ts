@@ -16,7 +16,7 @@ import {EditClientComponent} from '../../edit-client/edit-client.component';
 import {AddAdminComponent} from '../../add-admin/add-admin.component';
 import {EditAdminComponent} from '../../edit-admin/edit-admin.component';
 import {ConfigComponent} from '../../config/config.component';
-import {AuthGuard} from '../../../services/auth/auth.guard';
+import {AuthGuard} from '../../services/auth/auth.guard';
 import {EditConfigComponent} from '../../edit-config/edit-config.component';
 import {AddProductComponent} from '../../add-product/add-product.component';
 import {AddSubproductComponent} from '../../add-subproduct/add-subproduct.component';

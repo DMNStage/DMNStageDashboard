@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {AuthService} from '../../services/auth.service';
+import {AuthService} from '../services/auth.service';
 import {HttpErrorResponse} from '@angular/common/http';
-import {Token} from '../../model/token.model';
+import {Token} from '../model/token.model';
 
 @Component({
     selector: 'app-sign-in',
@@ -25,7 +25,6 @@ export class SignInComponent implements OnInit {
         this.authService.authenticateUser(username, password).subscribe(
             (data: Token) => {
                 this.authService.storeTokenData(data);
-                console.log(data);
                 this.router.navigate(['/dashboard']);
             },
             (err: HttpErrorResponse) => {

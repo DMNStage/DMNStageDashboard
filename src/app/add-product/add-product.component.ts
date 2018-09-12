@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {ProductService} from '../../services/product.service';
+import {ProductService} from '../services/product.service';
 
 declare var $: any;
 

@@ -10,10 +10,10 @@ export class ConfigService {
     }
 
     getConfig(key: string) {
-        return this.http.get<Config>(this.authService.host + '/config/' + key + '?access_token=' + this.authService.accessToken);
+        return this.http.get<Config>(this.authService.host + '/config/' + key);
     }
 
     editConfig(config: Config) {
-        return this.http.put(this.authService.host + '/config/' + config.key + '?access_token=' + this.authService.accessToken, config);
+        return this.http.put(this.authService.host + '/config/' + config.key, config);
     }
 }

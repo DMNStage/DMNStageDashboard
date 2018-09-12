@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {Admin} from '../../model/admin.model';
+import {Admin} from '../model/admin.model';
 import {ActivatedRoute, Router} from '@angular/router';
-import {AdminService} from '../../services/admin.service';
+import {AdminService} from '../services/admin.service';
 
 declare var $: any;
 

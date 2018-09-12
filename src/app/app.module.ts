@@ -10,16 +10,16 @@ import {ComponentsModule} from './components/components.module';
 import {AppComponent} from './app.component';
 import {AgmCoreModule} from '@agm/core';
 import {AdminLayoutComponent} from './layouts/admin-layout/admin-layout.component';
-import {AdminService} from '../services/admin.service';
-import {ClientService} from '../services/client.service';
-import {AuthService} from '../services/auth.service';
+import {AdminService} from './services/admin.service';
+import {ClientService} from './services/client.service';
+import {AuthService} from './services/auth.service';
 import {SignInComponent} from './sign-in/sign-in.component';
-import {AuthGuard} from '../services/auth/auth.guard';
-import {AuthInterceptor} from '../services/auth/auth.interceptor';
+import {AuthGuard} from './services/auth/auth.guard';
+import {AuthInterceptor} from './services/auth/auth.interceptor';
 import {MatIconModule, MatInputModule} from '@angular/material';
-import {ConfigService} from '../services/config.service';
-import {ProductService} from '../services/product.service';
-import {SubproductService} from '../services/subproduct.service';
+import {ConfigService} from './services/config.service';
+import {ProductService} from './services/product.service';
+import {SubproductService} from './services/subproduct.service';
 
 @NgModule({
     imports: [

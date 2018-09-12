@@ -2,8 +2,8 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {HttpClient} from '../../../node_modules/@angular/common/http';
 import {Router} from '@angular/router';
-import {ClientService} from '../../services/client.service';
-import {Client} from '../../model/client.model';
+import {ClientService} from '../services/client.service';
+import {Client} from '../model/client.model';
 
 @Component({
     selector: 'app-clients',

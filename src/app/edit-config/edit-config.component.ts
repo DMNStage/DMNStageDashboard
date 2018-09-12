@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {ConfigService} from '../../services/config.service';
-import {Config} from '../../model/config.model';
+import {ConfigService} from '../services/config.service';
+import {Config} from '../model/config.model';
 import {Observable} from 'rxjs/Observable';
 
 declare var $: any;

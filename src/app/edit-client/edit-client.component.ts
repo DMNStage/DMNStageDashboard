@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {Client} from '../../model/client.model';
+import {Client} from '../model/client.model';
 import {ActivatedRoute, Router} from '@angular/router';
-import {ClientService} from '../../services/client.service';
+import {ClientService} from '../services/client.service';
 import {TreeviewConfig, TreeviewHelper, TreeviewItem} from 'ngx-treeview';
-import {Subproduct} from '../../model/subproduct.model';
+import {Subproduct} from '../model/subproduct.model';
 
 declare var $: any;
 

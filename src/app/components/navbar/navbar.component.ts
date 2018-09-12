@@ -2,7 +2,7 @@ import {Component, ElementRef, OnInit} from '@angular/core';
 import {ROUTES} from '../sidebar/sidebar.component';
 import {Location} from '@angular/common';
 import {Router} from '@angular/router';
-import {AuthService} from '../../../services/auth.service';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-navbar',
