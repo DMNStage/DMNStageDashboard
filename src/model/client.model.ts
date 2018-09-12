@@ -15,7 +15,7 @@ export class Client {
             startTime: string,
             endTime: string,
             step: number,
-            ext: string,
+            ext: string
         }[];
     constructor() {
     }

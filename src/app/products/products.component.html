@@ -1,3 +1,163 @@
-<p>
-    products works!
-</p>
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <div class="example-header">
+                                    <!--<mat-card>-->
+                                    <mat-form-field>
+                                        <input matInput (keyup)="productApplyFilter($event.target.value)"
+                                               placeholder="Recherche">
+                                    </mat-form-field>
+                                    <!--</mat-card>-->
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <button mat-icon-button routerLink="/newproduct">
+                                    <mat-icon aria-label="Nouveau">add_circle_outline</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                <div class="example-container mat-elevation-z8">
+
+                                    <mat-table #productSort="matSort" [dataSource]="productDataSource" matSort>
+
+                                        <ng-container matColumnDef="id">
+                                            <mat-header-cell *matHeaderCellDef mat-sort-header>ID</mat-header-cell>
+                                            <mat-cell *matCellDef="let row"> {{row.id}}</mat-cell>
+                                        </ng-container>
+
+                                        <ng-container matColumnDef="name">
+                                            <mat-header-cell *matHeaderCellDef mat-sort-header>Produit</mat-header-cell>
+                                            <mat-cell *matCellDef="let row"> {{row.name}}</mat-cell>
+                                        </ng-container>
+
+                                        <ng-container matColumnDef="pathName">
+                                            <mat-header-cell *matHeaderCellDef mat-sort-header>Nom de dossier
+                                            </mat-header-cell>
+                                            <mat-cell *matCellDef="let row"> {{row.pathName}}</mat-cell>
+                                        </ng-container>
+
+                                        <ng-container matColumnDef="action">
+                                            <mat-header-cell *matHeaderCellDef mat-sort-header>Action</mat-header-cell>
+                                            <mat-cell *matCellDef="let row">
+                                                <button mat-icon-button (click)="onEditProduct(row)">
+                                                    <mat-icon>create</mat-icon>
+                                                </button>
+                                                <button mat-icon-button (click)="onDeleteProduct(row)">
+                                                    <mat-icon>delete_forever</mat-icon>
+                                                </button>
+                                                <button mat-icon-button (click)="onCheckProduct(row)">
+                                                    <mat-icon>search</mat-icon>
+                                                </button>
+                                            </mat-cell>
+                                        </ng-container>
+
+                                        <mat-header-row *matHeaderRowDef="productDisplayedColumns"></mat-header-row>
+                                        <mat-row *matRowDef="let row; columns: productDisplayedColumns;"></mat-row>
+                                    </mat-table>
+
+                                    <mat-paginator [pageSizeOptions]="[7, 15, 30, 100]"></mat-paginator>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <div class="example-header">
+                                    <!--<mat-card>-->
+                                    <mat-form-field>
+                                        <input matInput (keyup)="subProductApplyFilter($event.target.value)"
+                                               placeholder="Recherche">
+                                    </mat-form-field>
+                                    <!--</mat-card>-->
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <button mat-icon-button routerLink="/newsubproduct">
+                                    <mat-icon aria-label="Nouveau">add_circle_outline</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                <div class="example-container mat-elevation-z8">
+
+                                    <mat-table #subProductSort="matSort" [dataSource]="subProductDataSource" matSort>
+
+                                        <ng-container matColumnDef="id">
+                                            <mat-header-cell *matHeaderCellDef mat-sort-header>ID</mat-header-cell>
+                                            <mat-cell *matCellDef="let row"> {{row.id}}</mat-cell>
+                                        </ng-container>
+
+                                        <ng-container matColumnDef="name">
+                                            <mat-header-cell *matHeaderCellDef mat-sort-header>Produit</mat-header-cell>
+                                            <mat-cell *matCellDef="let row"> {{row.name}}</mat-cell>
+                                        </ng-container>
+
+                                        <ng-container matColumnDef="pathName">
+                                            <mat-header-cell *matHeaderCellDef mat-sort-header>Nom de dossier
+                                            </mat-header-cell>
+                                            <mat-cell *matCellDef="let row"> {{row.pathName}}</mat-cell>
+                                        </ng-container>
+
+                                        <ng-container matColumnDef="startTime">
+                                            <mat-header-cell *matHeaderCellDef mat-sort-header>Date debut
+                                            </mat-header-cell>
+                                            <mat-cell *matCellDef="let row"> {{row.startTime}}</mat-cell>
+                                        </ng-container>
+
+                                        <ng-container matColumnDef="endTime">
+                                            <mat-header-cell *matHeaderCellDef mat-sort-header>Date fin
+                                            </mat-header-cell>
+                                            <mat-cell *matCellDef="let row"> {{row.endTime}}</mat-cell>
+                                        </ng-container>
+
+                                        <ng-container matColumnDef="step">
+                                            <mat-header-cell *matHeaderCellDef mat-sort-header>Pas (min)
+                                            </mat-header-cell>
+                                            <mat-cell *matCellDef="let row"> {{row.step}}</mat-cell>
+                                        </ng-container>
+
+                                        <ng-container matColumnDef="ext">
+                                            <mat-header-cell *matHeaderCellDef mat-sort-header>extension
+                                            </mat-header-cell>
+                                            <mat-cell *matCellDef="let row"> {{row.ext}}</mat-cell>
+                                        </ng-container>
+
+                                        <ng-container matColumnDef="action">
+                                            <mat-header-cell *matHeaderCellDef mat-sort-header>Action</mat-header-cell>
+                                            <mat-cell *matCellDef="let row">
+                                                <button mat-icon-button (click)="onEditSubProduct(row)">
+                                                    <mat-icon>create</mat-icon>
+                                                </button>
+                                                <button mat-icon-button (click)="onDeleteSubProduct(row)">
+                                                    <mat-icon>delete_forever</mat-icon>
+                                                </button>
+                                            </mat-cell>
+                                        </ng-container>
+
+                                        <mat-header-row *matHeaderRowDef="subProductDisplayedColumns"></mat-header-row>
+                                        <mat-row *matRowDef="let row; columns: subProductDisplayedColumns;"></mat-row>
+                                    </mat-table>
+
+                                    <mat-paginator [pageSizeOptions]="[7, 15, 30, 100]"></mat-paginator>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

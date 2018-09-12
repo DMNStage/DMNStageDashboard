@@ -17,6 +17,9 @@ import {AddAdminComponent} from '../../add-admin/add-admin.component';
 import {EditAdminComponent} from '../../edit-admin/edit-admin.component';
 import {ConfigComponent} from '../../config/config.component';
 import {AuthGuard} from '../../../services/auth/auth.guard';
+import {EditConfigComponent} from '../../edit-config/edit-config.component';
+import {AddProductComponent} from '../../add-product/add-product.component';
+import {AddSubproductComponent} from '../../add-subproduct/add-subproduct.component';
 
 export const AdminLayoutRoutes: Routes = [
     // {
@@ -67,8 +70,11 @@ export const AdminLayoutRoutes: Routes = [
     {path: 'clients', component: ClientsComponent, canActivate: [AuthGuard]},
     {path: 'newclient', component: AddClientComponent, canActivate: [AuthGuard]},
     {path: 'editclient/:id', component: EditClientComponent, canActivate: [AuthGuard]},
-    {path: 'produits', component: ProductsComponent, canActivate: [AuthGuard]},
+    {path: 'products', component: ProductsComponent, canActivate: [AuthGuard]},
+    {path: 'newproduct', component: AddProductComponent, canActivate: [AuthGuard]},
+    {path: 'newsubproduct', component: AddSubproductComponent, canActivate: [AuthGuard]},
     {path: 'config', component: ConfigComponent, canActivate: [AuthGuard]},
+    {path: 'editconfig', component: EditConfigComponent, canActivate: [AuthGuard]},
     {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
     { path: 'user-profile',   component: UserProfileComponent },
     { path: 'table-list',     component: TableListComponent },

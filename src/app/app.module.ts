@@ -17,6 +17,9 @@ import {SignInComponent} from './sign-in/sign-in.component';
 import {AuthGuard} from '../services/auth/auth.guard';
 import {AuthInterceptor} from '../services/auth/auth.interceptor';
 import {MatIconModule, MatInputModule} from '@angular/material';
+import {ConfigService} from '../services/config.service';
+import {ProductService} from '../services/product.service';
+import {SubproductService} from '../services/subproduct.service';
 
 @NgModule({
     imports: [
@@ -38,7 +41,7 @@ import {MatIconModule, MatInputModule} from '@angular/material';
         AdminLayoutComponent,
         SignInComponent
     ],
-    providers: [AdminService, ClientService, AuthService, AuthGuard,
+    providers: [AdminService, ClientService, ConfigService, ProductService, SubproductService, AuthService, AuthGuard,
         {
             provide: HTTP_INTERCEPTORS,
             useClass: AuthInterceptor,

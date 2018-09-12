@@ -59,6 +59,9 @@ import {AddAdminComponent} from '../../add-admin/add-admin.component';
 import {EditAdminComponent} from '../../edit-admin/edit-admin.component';
 import {ConfigComponent} from '../../config/config.component';
 import {TreeviewModule} from 'ngx-treeview';
+import {EditConfigComponent} from '../../edit-config/edit-config.component';
+import {AddProductComponent} from '../../add-product/add-product.component';
+import {AddSubproductComponent} from '../../add-subproduct/add-subproduct.component';
 
 // import {TableOverviewExample} from './app/table-overview-example';
 
@@ -120,6 +123,7 @@ export class DemoMaterialModule {
     MatRippleModule,
     MatInputModule,
     MatTooltipModule,
+      MatRadioModule,
   ],
     entryComponents: [ClientsComponent, AdminsComponent],
   declarations: [
@@ -132,8 +136,11 @@ export class DemoMaterialModule {
       EditClientComponent,
 
       ProductsComponent,
+      AddProductComponent,
+      AddSubproductComponent,
 
       ConfigComponent,
+      EditConfigComponent,
 
     DashboardComponent,
     UserProfileComponent,

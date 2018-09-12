@@ -118,7 +118,7 @@ export class AddClientComponent implements OnInit {
     onSaveClient(dataForm) {
         const subProduct: Subproduct[] = [];
         this.selectedItems.forEach(item => {
-            subProduct.push(new Subproduct(item));
+            subProduct.push(new Subproduct(item, 'test', 'test', '00:00', '00:00', 0, 'test'));
         });
         dataForm.subProducts = subProduct;
         this.clientservice.saveClient(dataForm)
