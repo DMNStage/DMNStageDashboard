@@ -62,6 +62,7 @@ import {TreeviewModule} from 'ngx-treeview';
 import {EditConfigComponent} from '../../edit-config/edit-config.component';
 import {AddProductComponent} from '../../add-product/add-product.component';
 import {AddSubproductComponent} from '../../add-subproduct/add-subproduct.component';
+import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 
 // import {TableOverviewExample} from './app/table-overview-example';
 
@@ -117,6 +118,7 @@ export class DemoMaterialModule {
 
     CommonModule,
       TreeviewModule.forRoot(),
+      NgxMaterialTimepickerModule.forRoot(),
     RouterModule.forChild(AdminLayoutRoutes),
     FormsModule,
     MatButtonModule,

@@ -19,12 +19,12 @@
                                     </div>
                                     <div class="form-group col-sm-6">
                                         <mat-form-field>
-                                            <input matInput placeholder="Nom de dossier" type="text" name="namePath"
-                                                   #namePath="ngModel" ngModel required/>
+                                            <input matInput placeholder="Nom de dossier" type="text" name="Pathname"
+                                                   #Pathname="ngModel" ngModel required/>
                                         </mat-form-field>
-                                        <div *ngIf="namePath.invalid && (namePath.dirty || namePath.touched)"
+                                        <div *ngIf="Pathname.invalid && (Pathname.dirty || Pathname.touched)"
                                              class="alert alert-danger">
-                                            <div *ngIf="namePath.errors.required">- Le Nom du dossier est requis.</div>
+                                            <div *ngIf="Pathname.errors.required">- Le Nom du dossier est requis.</div>
                                         </div>
                                     </div>
                                 </div>
