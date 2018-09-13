@@ -99,6 +99,7 @@ export class ProductsComponent implements OnInit {
     onCheckProduct(product: Product) {
         this.subProductsPage = product.subProducts;
         this.subProductDataSource.data = this.subProductsPage;
+        this.subproductservice.currentProduct = product.id;
     }
 
     onEditProduct(product: Product) {

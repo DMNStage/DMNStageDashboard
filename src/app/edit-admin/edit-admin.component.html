@@ -79,16 +79,18 @@
                                                    [(ngModel)]="admin.phone" name="phone"/>
                                         </mat-form-field>
                                     </div>
-                                    <!--<label class="margin-right">Account Status: </label>-->
-                                    <!--&lt;!&ndash;<input class="form-control" type="number" [(ngModel)]="admin.active" />&ndash;&gt;-->
-                                    <!--<div class="custom-control custom-radio custom-control-inline">-->
-                                    <!--<input type="radio" id="active" [(ngModel)]="admin.active" name="active" class="custom-control-input" value=1 />-->
-                                    <!--<label class="custom-control-label" for="active">Active</label>-->
-                                    <!--</div>-->
-                                    <!--<div class="custom-control custom-radio custom-control-inline">-->
-                                    <!--<input type="radio" id="inactive" [(ngModel)]="admin.active" name="active" class="custom-control-input" value=0 />-->
-                                    <!--<label class="custom-control-label" for="inactive">Inactive</label>-->
-                                    <!--</div>-->
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-sm-6">
+                                        <!--<label for="checked">Compte</label>-->
+                                        <mat-radio-group [(ngModel)]="checked" name="active" id="active"
+                                                         style="display: table">
+                                            <mat-radio-button value="true" style="margin-right: 10px;">
+                                                Compte actif
+                                            </mat-radio-button>
+                                            <mat-radio-button value="false">Compte inactif</mat-radio-button>
+                                        </mat-radio-group>
+                                    </div>
                                 </div>
                                 <button mat-raised-button id="submit" [disabled]="!f.valid" class="btn btn-success"
                                         type="submit">

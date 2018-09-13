@@ -50,11 +50,11 @@ export class EditSubproductComponent implements OnInit {
 
     ngOnInit() {
         this.subProduct = this.subproductservice.currentSubProduct;
+        this.selectedItem = this.subproductservice.currentProduct;
         this.productservice.getProducts()
             .subscribe(
                 data => {
                     this.productList = data;
-                    console.log(this.productList);
                 },
                 (err: HttpErrorResponse) => {
                     if (err.status === 500) {

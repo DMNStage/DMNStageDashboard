@@ -16,7 +16,9 @@ export class EditClientComponent implements OnInit {
 
     idClient: number;
     client: Client = new Client();
-    // client: Client;
+
+    // Actif/Inactif radio
+    checked: string;
 
     productsList: any;
     treeViewItem: TreeviewItem[];
@@ -65,6 +67,7 @@ export class EditClientComponent implements OnInit {
 
     ngOnInit() {
         this.client = this.clientservice.currentClient;
+        this.checked = this.client.active.toString();
 
         this.client.subProducts.forEach(subProduct => {
             this.selectedItemsValue.push(subProduct.id);

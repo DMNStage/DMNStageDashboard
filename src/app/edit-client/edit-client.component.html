@@ -100,19 +100,19 @@
                                                [(ngModel)]="client.phone" name="phone"/>
                                     </mat-form-field>
                                 </div>
-                                <!--<label class="margin-right">Account Status: </label>-->
-                                <!--&lt;!&ndash;<input class="form-control" type="number" [(ngModel)]="client.active" />&ndash;&gt;-->
-                                <!--<div class="custom-control custom-radio custom-control-inline">-->
-                                <!--<input type="radio" id="active" [(ngModel)]="client.active" name="active" class="custom-control-input" value=1 />-->
-                                <!--<label class="custom-control-label" for="active">Active</label>-->
-                                <!--</div>-->
-                                <!--<div class="custom-control custom-radio custom-control-inline">-->
-                                <!--<input type="radio" id="inactive" [(ngModel)]="client.active" name="active" class="custom-control-input" value=0 />-->
-                                <!--<label class="custom-control-label" for="inactive">Inactive</label>-->
-                                <!--</div>-->
+                                <div class="form-group col-sm-6">
+                                    <!--<label for="checked">Compte</label>-->
+                                    <mat-radio-group [(ngModel)]="checked" name="active" id="active"
+                                                     style="display: table">
+                                        <mat-radio-button value="true" style="margin-right: 10px;">
+                                            Compte actif
+                                        </mat-radio-button>
+                                        <mat-radio-button value="false">Compte inactif</mat-radio-button>
+                                    </mat-radio-group>
+                                </div>
                             </div>
                             <div class="row">
-                                <div class="form-group col-sm-12">
+                                <div class="form-group col-6">
                                     <div class="card">
                                         <div class="card-header">
                                             <h4 class="card-title">Produit:</h4>

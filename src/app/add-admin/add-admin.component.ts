@@ -12,7 +12,7 @@ declare var $: any;
 export class AddAdminComponent implements OnInit {
 
     // Actif/Inactif radio
-    active = 'true';
+    checked = 'true';
     constructor(public router: Router, public adminservice: AdminService) {
     }
 

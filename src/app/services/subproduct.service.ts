@@ -7,6 +7,7 @@ import {Subproduct} from '../model/subproduct.model';
 export class SubproductService {
 
     currentSubProduct: any;
+    currentProduct: any;
 
     constructor(public http: HttpClient, public authservice: AuthService) {
     }

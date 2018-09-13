@@ -15,6 +15,9 @@ export class EditAdminComponent implements OnInit {
     idAdmin: number;
     admin: Admin = new Admin();
 
+    // Actif/Inactif radio
+    checked: string;
+
     constructor(public router: Router, public activatedRoute: ActivatedRoute, public adminservice: AdminService) {
         this.idAdmin = activatedRoute.snapshot.params['id'];
     }
@@ -48,6 +51,7 @@ export class EditAdminComponent implements OnInit {
 
     ngOnInit() {
         this.admin = this.adminservice.currentAdmin;
+        this.checked = this.admin.active.toString();
 
         // this.adminservice.getAdmin(this.idAdmin)
         //   .subscribe(

@@ -32,7 +32,7 @@ export class AddClientComponent implements OnInit {
     });
 
     // Actif/Inactif radio
-    active = 'true';
+    checked = 'true';
 
     constructor(public router: Router, public clientservice: ClientService, private fb: FormBuilder) {
     }
