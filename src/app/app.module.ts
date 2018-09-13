@@ -20,7 +20,7 @@ import {MatButtonModule, MatDialogModule, MatIconModule, MatInputModule} from '@
 import {ConfigService} from './services/config.service';
 import {ProductService} from './services/product.service';
 import {SubproductService} from './services/subproduct.service';
-import {NgProgressInterceptor, NgProgressModule} from 'ngx-progressbar';
+import {NgProgressModule} from '@ngx-progressbar/core';
 
 @NgModule({
     imports: [
@@ -51,11 +51,11 @@ import {NgProgressInterceptor, NgProgressModule} from 'ngx-progressbar';
             provide: HTTP_INTERCEPTORS,
             useClass: AuthInterceptor,
             multi: true
-        }, {
+        }/*, {
             provide: HTTP_INTERCEPTORS,
             useClass: NgProgressInterceptor,
             multi: true
-        }],
+        }*/],
     bootstrap: [AppComponent]
 })
 export class AppModule { }
