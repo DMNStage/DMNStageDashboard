@@ -15,7 +15,6 @@ export class AddSubproductComponent implements OnInit {
 
     productList: any;
     selectedItem: number;
-
     constructor(public router: Router, public subproductservice: SubproductService, public productservice: ProductService) {
     }
 
@@ -52,7 +51,7 @@ export class AddSubproductComponent implements OnInit {
             .subscribe(
                 data => {
                     this.productList = data;
-                    console.log(this.productList);
+                    this.selectedItem = this.productList[0].id;
                 },
                 (err: HttpErrorResponse) => {
                     if (err.status === 500) {

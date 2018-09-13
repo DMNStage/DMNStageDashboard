@@ -1,11 +1,23 @@
 .card {
     left: 50%;
     top: 45%;
-    position: absolute;
+    position: fixed;
     -webkit-transform: translate3d(-50%, -50%, 0);
     -moz-transform: translate3d(-50%, -50%, 0);
     transform: translate3d(-50%, -50%, 0);
-    width: 30%;
+    width: 35vw;
+}
+
+@media only screen and (max-width: 900px) {
+    .card {
+        width: 60vw;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    .card {
+        width: 80vw;
+    }
 }
 
 .mat-icon.material-icons {

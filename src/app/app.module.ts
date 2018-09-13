@@ -21,6 +21,8 @@ import {ConfigService} from './services/config.service';
 import {ProductService} from './services/product.service';
 import {SubproductService} from './services/subproduct.service';
 import {NgProgressModule} from '@ngx-progressbar/core';
+import {NgProgressHttpModule} from '@ngx-progressbar/http';
+import {NgProgressRouterModule} from '@ngx-progressbar/router';
 
 @NgModule({
     imports: [
@@ -39,7 +41,12 @@ import {NgProgressModule} from '@ngx-progressbar/core';
         AgmCoreModule.forRoot({
             apiKey: 'YOUR_GOOGLE_MAPS_API_KEY'
         }),
-        NgProgressModule
+        NgProgressModule.forRoot({
+            color: 'red',
+            thick: true
+        }),
+        NgProgressHttpModule.forRoot(),
+        NgProgressRouterModule.forRoot()
     ],
     declarations: [
         AppComponent,

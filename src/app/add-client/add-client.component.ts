@@ -3,6 +3,7 @@ import {Router} from '@angular/router';
 import {ClientService} from '../services/client.service';
 import {TreeviewConfig, TreeviewHelper, TreeviewItem} from 'ngx-treeview';
 import {Subproduct} from '../model/subproduct.model';
+import {FormBuilder} from '@angular/forms';
 
 declare var $: any;
 
@@ -30,8 +31,10 @@ export class AddClientComponent implements OnInit {
         maxHeight: 600
     });
 
-    constructor(public router: Router, public clientservice: ClientService) {
+    // Actif/Inactif radio
+    active = 'true';
 
+    constructor(public router: Router, public clientservice: ClientService, private fb: FormBuilder) {
     }
 
     showNotification(from, align, color, message) {
