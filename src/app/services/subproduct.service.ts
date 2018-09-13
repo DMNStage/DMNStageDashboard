@@ -12,19 +12,19 @@ export class SubproductService {
     }
 
     getSubProducts() {
-        return this.http.get(this.authservice.host + '/products');
+        return this.http.get(this.authservice.host + '/subproducts');
     }
 
     getSubProduct(id: number) {
-        return this.http.get(this.authservice.host + '/products/' + id);
+        return this.http.get(this.authservice.host + '/subproducts/' + id);
     }
 
-    saveSubProduct(subProduct: Subproduct) {
-        return this.http.post(this.authservice.host + '/products', subProduct);
+    saveSubProduct(subProduct: Subproduct, productId: number) {
+        return this.http.post(this.authservice.host + '/subproducts?selectedproduct=' + productId, subProduct);
     }
 
-    editSubProduct(subProduct: Subproduct) {
-        return this.http.put(this.authservice.host + '/products/' + subProduct.id, subProduct);
+    editSubProduct(subProduct: Subproduct, productId: number) {
+        return this.http.put(this.authservice.host + '/subproducts/' + subProduct.id + '?selectedproduct=' + productId, subProduct);
     }
 
     deleteSubProduct(id: number) {

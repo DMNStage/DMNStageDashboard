@@ -20,6 +20,8 @@ import {AuthGuard} from '../../services/auth/auth.guard';
 import {EditConfigComponent} from '../../edit-config/edit-config.component';
 import {AddProductComponent} from '../../add-product/add-product.component';
 import {AddSubproductComponent} from '../../add-subproduct/add-subproduct.component';
+import {EditSubproductComponent} from '../../edit-subproduct/edit-subproduct.component';
+import {EditProductComponent} from '../../edit-product/edit-product.component';
 
 export const AdminLayoutRoutes: Routes = [
     // {
@@ -72,7 +74,9 @@ export const AdminLayoutRoutes: Routes = [
     {path: 'editclient/:id', component: EditClientComponent, canActivate: [AuthGuard]},
     {path: 'products', component: ProductsComponent, canActivate: [AuthGuard]},
     {path: 'newproduct', component: AddProductComponent, canActivate: [AuthGuard]},
+    {path: 'editproduct', component: EditProductComponent, canActivate: [AuthGuard]},
     {path: 'newsubproduct', component: AddSubproductComponent, canActivate: [AuthGuard]},
+    {path: 'editsubproduct', component: EditSubproductComponent, canActivate: [AuthGuard]},
     {path: 'config', component: ConfigComponent, canActivate: [AuthGuard]},
     {path: 'editconfig', component: EditConfigComponent, canActivate: [AuthGuard]},
     {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},

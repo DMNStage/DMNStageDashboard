@@ -1,12 +1,10 @@
 import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
-import {Observable} from 'rxjs/Observable';
-import 'rxjs/add/operator/do';
+import {Observable, of} from 'rxjs';
 import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
 import {Token} from '../../model/token.model';
 import {AuthService} from '../auth.service';
-import {catchError, mergeMap} from 'rxjs/operators';
-import {of} from 'rxjs/observable/of';
+import {catchError, mergeMap, tap} from 'rxjs/operators';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -31,7 +29,7 @@ export class AuthInterceptor implements HttpInterceptor {
                     headers: req.headers.set('Authorization', 'Bearer ' + data.access_token)
                 });
                 return next.handle(clonedreq)
-                    .do(
+                    .pipe(tap(
                         succ => {
                         },
                         err => {
@@ -42,7 +40,7 @@ export class AuthInterceptor implements HttpInterceptor {
                                 this.authService.clearTokenData();
                             }
                         }
-                    );
+                    ));
             } else {
                 return this.authService.getNewTokenDataFromRefreshToken(data.refresh_token).pipe(mergeMap(
                     (newToken: Token) => {
@@ -53,7 +51,7 @@ export class AuthInterceptor implements HttpInterceptor {
                             headers: req.headers.set('Authorization', 'Bearer ' + newToken.access_token)
                         });
                         return next.handle(clonedreq)
-                            .do(
+                            .pipe(tap(
                                 succ => {
                                 },
                                 err => {
@@ -64,7 +62,7 @@ export class AuthInterceptor implements HttpInterceptor {
                                         this.authService.clearTokenData();
                                     }
                                 }
-                            );
+                            ));
                     }), catchError(err => {
                         console.log('can\'t get a new access token from refresh token');
                         console.log('interceptor said NO');

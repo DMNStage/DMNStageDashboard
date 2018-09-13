@@ -61,8 +61,10 @@ import {ConfigComponent} from '../../config/config.component';
 import {TreeviewModule} from 'ngx-treeview';
 import {EditConfigComponent} from '../../edit-config/edit-config.component';
 import {AddProductComponent} from '../../add-product/add-product.component';
-import {AddSubproductComponent} from '../../add-subproduct/add-subproduct.component';
+import {AddSubproductComponent, SearchPipe} from '../../add-subproduct/add-subproduct.component';
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
+import {EditSubproductComponent} from '../../edit-subproduct/edit-subproduct.component';
+import {EditProductComponent} from '../../edit-product/edit-product.component';
 
 // import {TableOverviewExample} from './app/table-overview-example';
 
@@ -139,10 +141,15 @@ export class DemoMaterialModule {
 
       ProductsComponent,
       AddProductComponent,
+      EditProductComponent,
+
       AddSubproductComponent,
+      EditSubproductComponent,
 
       ConfigComponent,
       EditConfigComponent,
+
+      SearchPipe,
 
     DashboardComponent,
     UserProfileComponent,
@@ -151,7 +158,7 @@ export class DemoMaterialModule {
     IconsComponent,
     MapsComponent,
     NotificationsComponent,
-    UpgradeComponent,
+      UpgradeComponent
   ],
     providers: [],
 })

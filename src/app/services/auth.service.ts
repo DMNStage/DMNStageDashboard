@@ -3,7 +3,7 @@ import {HttpClient, HttpErrorResponse, HttpHeaders, HttpParams} from '@angular/c
 import {Token} from '../model/token.model';
 import {Router} from '@angular/router';
 import {catchError, map} from 'rxjs/operators';
-import {of} from 'rxjs/observable/of';
+import {of} from 'rxjs';
 
 @Injectable()
 export class AuthService {

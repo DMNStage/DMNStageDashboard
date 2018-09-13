@@ -1,20 +1,22 @@
 import {Component, OnInit, Pipe, PipeTransform} from '@angular/core';
+import {HttpErrorResponse} from '@angular/common/http';
 import {Router} from '@angular/router';
 import {SubproductService} from '../services/subproduct.service';
 import {ProductService} from '../services/product.service';
-import {HttpErrorResponse} from '@angular/common/http';
+import {Subproduct} from '../model/subproduct.model';
 
 declare var $: any;
 
 @Component({
-    selector: 'app-add-subproduct',
-    templateUrl: './add-subproduct.component.html',
-    styleUrls: ['./add-subproduct.component.scss']
+    selector: 'app-edit-subproduct',
+    templateUrl: './edit-subproduct.component.html',
+    styleUrls: ['./edit-subproduct.component.scss']
 })
-export class AddSubproductComponent implements OnInit {
+export class EditSubproductComponent implements OnInit {
 
     productList: any;
     selectedItem: number;
+    subProduct: Subproduct = new Subproduct(null, 'test', 'test', '00:00', '00:00', 0, 'test');
 
     constructor(public router: Router, public subproductservice: SubproductService, public productservice: ProductService) {
     }
@@ -47,7 +49,7 @@ export class AddSubproductComponent implements OnInit {
     }
 
     ngOnInit() {
-
+        this.subProduct = this.subproductservice.currentSubProduct;
         this.productservice.getProducts()
             .subscribe(
                 data => {
@@ -64,13 +66,13 @@ export class AddSubproductComponent implements OnInit {
             )
     }
 
-    onSaveSubProduct(dataForm) {
+    onEditSubProduct(dataForm) {
         // console.log(dataForm);
         // console.log(this.selectedItem);
         this.subproductservice.saveSubProduct(dataForm, this.selectedItem)
             .subscribe(
                 data => {
-                    this.showNotification('bottom', 'right', 1, 'Le sous-produit a été ajouté avec succès.');
+                    this.showNotification('bottom', 'right', 1, 'Le sous-produit a été modifié avec succès.');
                     this.router.navigate(['products']);
                 },
                 err => {

@@ -103,12 +103,12 @@ export class ProductsComponent implements OnInit {
 
     onEditProduct(product: Product) {
         this.productservice.currentProduct = this.productsPage[this.productsPage.indexOf(product)];
-        this.router.navigate(['editproduct', product.id])
+        this.router.navigate(['editproduct'])
     }
 
     onEditSubProduct(subProduct: Subproduct) {
         this.subproductservice.currentSubProduct = this.subProductsPage[this.subProductsPage.indexOf(subProduct)];
-        this.router.navigate(['editsubproduct', subProduct.id])
+        this.router.navigate(['editsubproduct']);
     }
 
     onDeleteProduct(product: Product) {

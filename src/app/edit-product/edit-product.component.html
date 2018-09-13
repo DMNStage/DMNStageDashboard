@@ -5,12 +5,16 @@
                 <div class="container margin-top">
                     <div class="card">
                         <div class="card-body">
-                            <form #f="ngForm" (ngSubmit)="onSaveProduct(f.value)">
+                            <form #f="ngForm" (ngSubmit)="onEditProduct(f.value)">
+                                <div class="form-group" hidden>
+                                    <label>id: </label>
+                                    <input class="form-control" type="text" name="id" [(ngModel)]="product.id"/>
+                                </div>
                                 <div class="row">
                                     <div class="form-group col-sm-6"> <!--<div class="col-sm-4">-->
                                         <mat-form-field>
                                             <input matInput placeholder="Nom de produit" type="text" name="name"
-                                                   #name="ngModel" ngModel required/>
+                                                   #name="ngModel" [(ngModel)]="product.name" required/>
                                         </mat-form-field>
                                         <div *ngIf="name.invalid && (name.dirty || name.touched)"
                                              class="alert alert-danger">
@@ -20,7 +24,7 @@
                                     <div class="form-group col-sm-6">
                                         <mat-form-field>
                                             <input matInput placeholder="Nom de dossier" type="text" name="pathName"
-                                                   #pathName="ngModel" ngModel required/>
+                                                   #pathName="ngModel" [(ngModel)]="product.pathName" required/>
                                         </mat-form-field>
                                         <div *ngIf="pathName.invalid && (pathName.dirty || pathName.touched)"
                                              class="alert alert-danger">

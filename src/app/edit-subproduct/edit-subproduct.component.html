@@ -36,12 +36,16 @@
             <div class="col-sm-8">
                 <div class="card">
                     <div class="card-body">
-                        <form #f="ngForm" (ngSubmit)="onSaveSubProduct(f.value)">
+                        <form #f="ngForm" (ngSubmit)="onEditSubProduct(f.value)">
+                            <div class="form-group" hidden>
+                                <label>id: </label>
+                                <input class="form-control" type="text" name="id" [(ngModel)]="subProduct.id"/>
+                            </div>
                             <div class="row">
                                 <div class="form-group col-sm-6"> <!--<div class="col-sm-4">-->
                                     <mat-form-field>
                                         <input matInput placeholder="Nom de produit" type="text" name="name"
-                                               #name="ngModel" ngModel required/>
+                                               #name="ngModel" [(ngModel)]="subProduct.name" required/>
                                     </mat-form-field>
                                     <div *ngIf="name.invalid && (name.dirty || name.touched)"
                                          class="alert alert-danger">
@@ -51,7 +55,7 @@
                                 <div class="form-group col-sm-6">
                                     <mat-form-field>
                                         <input matInput placeholder="Nom de dossier" type="text" name="pathName"
-                                               #pathName="ngModel" ngModel required/>
+                                               #pathName="ngModel" [(ngModel)]="subProduct.pathName" required/>
                                     </mat-form-field>
                                     <div *ngIf="pathName.invalid && (pathName.dirty || pathName.touched)"
                                          class="alert alert-danger">
@@ -63,7 +67,7 @@
                                 <div class="form-group col-sm-6">
                                     <mat-form-field>
                                         <input matInput placeholder="Heur de debut" name="startTime"
-                                               #startTime="ngModel" ngModel required
+                                               #startTime="ngModel" [(ngModel)]="subProduct.startTime" required
                                                [ngxTimepicker]="startTime" [format]="24" readonly>
                                         <ngx-material-timepicker #startTime></ngx-material-timepicker>
                                     </mat-form-field>
@@ -71,7 +75,7 @@
                                 <div class="form-group col-sm-6">
                                     <mat-form-field>
                                         <input matInput placeholder="Heur de fin" name="endTime"
-                                               #endTime="ngModel" ngModel required
+                                               #endTime="ngModel" [(ngModel)]="subProduct.endTime" required
                                                [ngxTimepicker]="endTime" [format]="24" readonly>
                                         <ngx-material-timepicker #endTime></ngx-material-timepicker>
                                     </mat-form-field>
@@ -80,12 +84,14 @@
                             <div class="row">
                                 <div class="form-group col-sm-6">
                                     <mat-form-field>
-                                        <input matInput placeholder="Le pas" type="number" ngModel name="step"/>
+                                        <input matInput placeholder="Le pas" type="number" [(ngModel)]="subProduct.step"
+                                               name="step"/>
                                     </mat-form-field>
                                 </div>
                                 <div class="form-group col-sm-6">
                                     <mat-form-field>
-                                        <input matInput placeholder="Extension" type="text" ngModel name="ext"/>
+                                        <input matInput placeholder="Extension" type="text" [(ngModel)]="subProduct.ext"
+                                               name="ext"/>
                                     </mat-form-field>
                                 </div>
                             </div>

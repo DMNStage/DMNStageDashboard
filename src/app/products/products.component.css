@@ -1,0 +1,8 @@
+.mat-table {
+    overflow: auto;
+    max-height: 80%;
+}
+
+.mat-column-id {
+    flex: 0 0 1%;
+}

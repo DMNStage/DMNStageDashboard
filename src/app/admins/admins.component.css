@@ -14,9 +14,13 @@
     /*width: 100%;*/
 }
 
-.mat-table {
-    overflow: auto;
-    max-height: 80%;
+/*.mat-table {*/
+/*overflow: auto;*/
+/*max-height: 80%;*/
+/*}*/
+
+.mat-column-id {
+    flex: 0 0 5%;
 }
 
 .mat-raised-button {

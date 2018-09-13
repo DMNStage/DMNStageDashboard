@@ -19,6 +19,10 @@
     max-height: 80%;
 }
 
+.mat-column-id {
+    flex: 0 0 5%;
+}
+
 .mat-raised-button {
     /*height: 50px;*/
 }
