@@ -3,6 +3,13 @@
     max-height: 80%;
 }
 
+.example-container {
+    display: flex;
+    flex-direction: column;
+    /*max-height: 60vh;*/
+    /*min-width: 300px;*/
+}
+
 .mat-column-id {
-    flex: 0 0 1%;
+    flex: 0 0 10%;
 }

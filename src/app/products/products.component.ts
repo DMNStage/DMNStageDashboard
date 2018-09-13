@@ -13,7 +13,7 @@ declare var $: any;
 @Component({
     selector: 'app-products',
     templateUrl: './products.component.html',
-    styleUrls: ['./products.component.scss']
+    styleUrls: ['./products.component.css']
 })
 export class ProductsComponent implements OnInit {
 
@@ -25,10 +25,10 @@ export class ProductsComponent implements OnInit {
     subProductsPage: any;
     subProductDataSource = new MatTableDataSource(this.subProductsPage);
 
-    @ViewChild(MatPaginator) productPaginator: MatPaginator;
+    @ViewChild('productPaginator') productPaginator: MatPaginator;
     @ViewChild('productSort') productSort: MatSort;
 
-    @ViewChild(MatPaginator) subProductPaginator: MatPaginator;
+    @ViewChild('subProductPaginator') subProductPaginator: MatPaginator;
     @ViewChild('subProductSort') subProductSort: MatSort;
 
     constructor(public http: HttpClient, public router: Router, public productservice: ProductService, public subproductservice: SubproductService, public clientservice: ClientService) {

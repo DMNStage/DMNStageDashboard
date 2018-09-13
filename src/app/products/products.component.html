@@ -5,7 +5,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="col-6">
                                 <div class="example-header">
                                     <!--<mat-card>-->
                                     <mat-form-field>
@@ -15,14 +15,14 @@
                                     <!--</mat-card>-->
                                 </div>
                             </div>
-                            <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="col-6">
                                 <button mat-icon-button routerLink="/newproduct">
                                     <mat-icon aria-label="Nouveau">add_circle_outline</mat-icon>
                                 </button>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-lg-12 col-md-12 col-sm-12">
+                            <div class="col-12">
                                 <div class="example-container mat-elevation-z8">
 
                                     <mat-table #productSort="matSort" [dataSource]="productDataSource" matSort>
@@ -46,15 +46,17 @@
                                         <ng-container matColumnDef="action">
                                             <mat-header-cell *matHeaderCellDef mat-sort-header>Action</mat-header-cell>
                                             <mat-cell *matCellDef="let row">
-                                                <button mat-icon-button (click)="onEditProduct(row)">
-                                                    <mat-icon>create</mat-icon>
-                                                </button>
-                                                <button mat-icon-button (click)="onDeleteProduct(row)">
-                                                    <mat-icon>delete_forever</mat-icon>
-                                                </button>
-                                                <button mat-icon-button (click)="onCheckProduct(row)">
-                                                    <mat-icon>search</mat-icon>
-                                                </button>
+                                                <div class="button-row">
+                                                    <button mat-icon-button (click)="onEditProduct(row)">
+                                                        <mat-icon>create</mat-icon>
+                                                    </button>
+                                                    <button mat-icon-button (click)="onDeleteProduct(row)">
+                                                        <mat-icon>delete_forever</mat-icon>
+                                                    </button>
+                                                    <button mat-icon-button (click)="onCheckProduct(row)">
+                                                        <mat-icon>search</mat-icon>
+                                                    </button>
+                                                </div>
                                             </mat-cell>
                                         </ng-container>
 
@@ -62,7 +64,8 @@
                                         <mat-row *matRowDef="let row; columns: productDisplayedColumns;"></mat-row>
                                     </mat-table>
 
-                                    <mat-paginator [pageSizeOptions]="[7, 15, 30, 100]"></mat-paginator>
+                                    <mat-paginator #productPaginator="matPaginator"
+                                                   [pageSizeOptions]="[7, 15, 30, 100]"></mat-paginator>
                                 </div>
                             </div>
                         </div>
@@ -138,12 +141,14 @@
                                         <ng-container matColumnDef="action">
                                             <mat-header-cell *matHeaderCellDef mat-sort-header>Action</mat-header-cell>
                                             <mat-cell *matCellDef="let row">
-                                                <button mat-icon-button (click)="onEditSubProduct(row)">
-                                                    <mat-icon>create</mat-icon>
-                                                </button>
-                                                <button mat-icon-button (click)="onDeleteSubProduct(row)">
-                                                    <mat-icon>delete_forever</mat-icon>
-                                                </button>
+                                                <div class="button-row">
+                                                    <button mat-icon-button (click)="onEditSubProduct(row)">
+                                                        <mat-icon>create</mat-icon>
+                                                    </button>
+                                                    <button mat-icon-button (click)="onDeleteSubProduct(row)">
+                                                        <mat-icon>delete_forever</mat-icon>
+                                                    </button>
+                                                </div>
                                             </mat-cell>
                                         </ng-container>
 
@@ -151,7 +156,8 @@
                                         <mat-row *matRowDef="let row; columns: subProductDisplayedColumns;"></mat-row>
                                     </mat-table>
 
-                                    <mat-paginator [pageSizeOptions]="[7, 15, 30, 100]"></mat-paginator>
+                                    <mat-paginator #subProductPaginator="matPaginator"
+                                                   [pageSizeOptions]="[7, 15, 30, 100]"></mat-paginator>
                                 </div>
                             </div>
                         </div>
