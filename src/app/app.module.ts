@@ -16,10 +16,11 @@ import {AuthService} from './services/auth.service';
 import {SignInComponent} from './sign-in/sign-in.component';
 import {AuthGuard} from './services/auth/auth.guard';
 import {AuthInterceptor} from './services/auth/auth.interceptor';
-import {MatIconModule, MatInputModule} from '@angular/material';
+import {MatButtonModule, MatDialogModule, MatIconModule, MatInputModule} from '@angular/material';
 import {ConfigService} from './services/config.service';
 import {ProductService} from './services/product.service';
 import {SubproductService} from './services/subproduct.service';
+import {NgProgressInterceptor, NgProgressModule} from 'ngx-progressbar';
 
 @NgModule({
     imports: [
@@ -32,9 +33,13 @@ import {SubproductService} from './services/subproduct.service';
         AppRoutingModule,
         MatInputModule,
         MatIconModule,
+        MatButtonModule,
+        MatDialogModule,
+
         AgmCoreModule.forRoot({
             apiKey: 'YOUR_GOOGLE_MAPS_API_KEY'
-        })
+        }),
+        NgProgressModule
     ],
     declarations: [
         AppComponent,
@@ -45,6 +50,10 @@ import {SubproductService} from './services/subproduct.service';
         {
             provide: HTTP_INTERCEPTORS,
             useClass: AuthInterceptor,
+            multi: true
+        }, {
+            provide: HTTP_INTERCEPTORS,
+            useClass: NgProgressInterceptor,
             multi: true
         }],
     bootstrap: [AppComponent]

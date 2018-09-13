@@ -116,6 +116,7 @@ export class AddClientComponent implements OnInit {
     }
 
     onSaveClient(dataForm) {
+        (<HTMLInputElement> document.getElementById('submit')).disabled = true;
         const subProduct: Subproduct[] = [];
         this.selectedItems.forEach(item => {
             subProduct.push(new Subproduct(item, 'test', 'test', '00:00', '00:00', 0, 'test'));
@@ -129,6 +130,7 @@ export class AddClientComponent implements OnInit {
                     this.router.navigate(['clients']);
                 },
                 err => {
+                    (<HTMLInputElement> document.getElementById('submit')).disabled = false;
                     if (err.error.hasOwnProperty('result')) {
                         this.showNotification('bottom', 'right', 0, err.error.result);
                     } else {

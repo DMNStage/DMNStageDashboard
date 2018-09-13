@@ -142,6 +142,7 @@ export class EditClientComponent implements OnInit {
     }
 
     onEditClient(dataForm) {
+        (<HTMLInputElement> document.getElementById('submit')).disabled = true;
         const subProduct: Subproduct[] = [];
         this.selectedItemsValue.forEach(item => {
             subProduct.push(new Subproduct(item, 'test', 'test', '00:00', '00:00', 0, 'test'));
@@ -154,6 +155,7 @@ export class EditClientComponent implements OnInit {
                     this.router.navigate(['clients']);
                 },
                 err => {
+                    (<HTMLInputElement> document.getElementById('submit')).disabled = false;
                     if (err.error.hasOwnProperty('result')) {
                         this.showNotification('bottom', 'right', 0, err.error.result);
                     } else {

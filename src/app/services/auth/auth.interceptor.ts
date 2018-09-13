@@ -42,6 +42,7 @@ export class AuthInterceptor implements HttpInterceptor {
                         }
                     ));
             } else {
+                let isNot401 = false;
                 return this.authService.getNewTokenDataFromRefreshToken(data.refresh_token).pipe(mergeMap(
                     (newToken: Token) => {
                         console.log('got a new token');
@@ -60,14 +61,18 @@ export class AuthInterceptor implements HttpInterceptor {
                                         console.log('got 401 from server---');
                                         this.router.navigate(['/login']);
                                         this.authService.clearTokenData();
+                                    } else {
+                                        isNot401 = true;
                                     }
                                 }
                             ));
                     }), catchError(err => {
+                    if (!isNot401) {
                         console.log('can\'t get a new access token from refresh token');
                         console.log('interceptor said NO');
                         this.router.navigate(['/login']);
                         this.authService.clearTokenData();
+                    }
                         return of<HttpEvent<any>>();
                     })
                 );

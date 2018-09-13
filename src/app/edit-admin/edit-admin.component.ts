@@ -57,6 +57,7 @@ export class EditAdminComponent implements OnInit {
     }
 
     onEditAdmin(dataForm) {
+        (<HTMLInputElement> document.getElementById('submit')).disabled = true;
         this.adminservice.editAdmin(dataForm)
             .subscribe(
                 data => {
@@ -64,6 +65,7 @@ export class EditAdminComponent implements OnInit {
                     this.router.navigate(['admins']);
                 },
                 err => {
+                    (<HTMLInputElement> document.getElementById('submit')).disabled = false;
                     if (err.error.hasOwnProperty('result')) {
                         this.showNotification('bottom', 'right', 0, err.error.result);
                     } else {
