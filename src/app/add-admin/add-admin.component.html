@@ -79,8 +79,12 @@
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-sm-6">
-                                        <mat-radio-group ngModel name="active">
-                                            <mat-radio-button value="true">Actif</mat-radio-button>
+                                        <label for="active">Compte</label>
+                                        <mat-radio-group [(ngModel)]="active" name="active" id="active"
+                                                         style="display: table">
+                                            <mat-radio-button value="true" style="margin-right: 10px;" [checked]="true">
+                                                Actif
+                                            </mat-radio-button>
                                             <mat-radio-button value="false">Inactif</mat-radio-button>
                                         </mat-radio-group>
                                     </div>

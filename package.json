@@ -31,6 +31,8 @@
     "@angular/platform-server": "6.1.4",
     "@angular/router": "6.1.4",
     "@ngx-progressbar/core": "^5.1.2",
+    "@ngx-progressbar/http": "^5.1.2",
+    "@ngx-progressbar/router": "^5.1.2",
     "adm-zip": "^0.4.11",
     "ajv": "6.4.0",
     "angular-tree-component": "^8.0.0",
