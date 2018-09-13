@@ -1,3 +1,74 @@
-<p>
-    add-subproduct works!
-</p>
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="col-12">
+                            <div class="form-group">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="card">
+                    <div class="card-body">
+                        <form #f="ngForm" (ngSubmit)="onSaveClient(f.value)">
+                            <div class="row">
+                                <div class="form-group col-sm-6"> <!--<div class="col-sm-4">-->
+                                    <mat-form-field>
+                                        <input matInput placeholder="Nom de produit" type="text" name="name"
+                                               #name="ngModel" ngModel required/>
+                                    </mat-form-field>
+                                    <div *ngIf="name.invalid && (name.dirty || name.touched)"
+                                         class="alert alert-danger">
+                                        <div *ngIf="name.errors.required">- Le nom du produit est requis.</div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <mat-form-field>
+                                        <input matInput placeholder="Nom de dossier" type="text" name="Pathname"
+                                               #Pathname="ngModel" ngModel required/>
+                                    </mat-form-field>
+                                    <div *ngIf="Pathname.invalid && (Pathname.dirty || Pathname.touched)"
+                                         class="alert alert-danger">
+                                        <div *ngIf="Pathname.errors.required">- Le Nom du dossier est requis.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-6">
+                                    <input matInput placeholder="24hr format" aria-label="24hr format"
+                                           [ngxTimepicker]="fullTime" [format]="24" readonly>
+                                    <ngx-material-timepicker #fullTime></ngx-material-timepicker>
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <input matInput placeholder="24hr format" aria-label="24hr format"
+                                           [ngxTimepicker]="fullTime" [format]="24" readonly>
+                                    <ngx-material-timepicker #fullTime></ngx-material-timepicker>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-6">
+                                    <mat-form-field>
+                                        <input matInput placeholder="Le pas" type="number" ngModel name="step"/>
+                                    </mat-form-field>
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <mat-form-field>
+                                        <input matInput placeholder="Extension" type="text" ngModel name="ext"/>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <button mat-raised-button [disabled]="!f.valid" class="btn btn-success" type="submit">
+                                Valider
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
