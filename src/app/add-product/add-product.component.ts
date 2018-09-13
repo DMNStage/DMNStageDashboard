@@ -45,6 +45,7 @@ export class AddProductComponent implements OnInit {
     }
 
     onSaveProduct(dataForm) {
+        (<HTMLInputElement> document.getElementById('submit')).disabled = true;
         this.productservice.saveProduct(dataForm)
             .subscribe(
                 data => {
@@ -52,6 +53,7 @@ export class AddProductComponent implements OnInit {
                     this.router.navigate(['products']);
                 },
                 err => {
+                    (<HTMLInputElement> document.getElementById('submit')).disabled = false;
                     if (err.error.hasOwnProperty('result')) {
                         this.showNotification('bottom', 'right', 0, err.error.result);
                     } else {

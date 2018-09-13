@@ -45,6 +45,7 @@ export class AddAdminComponent implements OnInit {
     }
 
     onSaveAdmin(dataForm) {
+        (<HTMLInputElement> document.getElementById('submit')).disabled = true;
         this.adminservice.saveAdmin(dataForm)
             .subscribe(
                 data => {
@@ -52,6 +53,7 @@ export class AddAdminComponent implements OnInit {
                     this.router.navigate(['admins']);
                 },
                 err => {
+                    (<HTMLInputElement> document.getElementById('submit')).disabled = false;
                     if (err.error.hasOwnProperty('result')) {
                         this.showNotification('bottom', 'right', 0, err.error.result);
                     } else {

@@ -41,12 +41,18 @@ export class EditConfigComponent implements OnInit {
     }
 
     onEditConfig(dataForm) {
+        (<HTMLInputElement> document.getElementById('pathFormatSubmit')).disabled = true;
+        (<HTMLInputElement> document.getElementById('hostSubmit')).disabled = true;
         this.configService.editConfig(dataForm)
             .subscribe(
                 data => {
                     this.showNotification('bottom', 'right', 1, 'La configuration a été modifié avec succès.');
+                    (<HTMLInputElement> document.getElementById('pathFormatSubmit')).disabled = false;
+                    (<HTMLInputElement> document.getElementById('hostSubmit')).disabled = false;
                 },
                 err => {
+                    (<HTMLInputElement> document.getElementById('pathFormatSubmit')).disabled = false;
+                    (<HTMLInputElement> document.getElementById('hostSubmit')).disabled = false;
                     if (err.error.hasOwnProperty('result')) {
                         this.showNotification('bottom', 'right', 0, err.error.result);
                     } else if (err.error.hasOwnProperty('error')) {

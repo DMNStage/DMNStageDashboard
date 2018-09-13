@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {Router} from '@angular/router';
 import {ProductService} from '../services/product.service';
 import {Product} from '../model/product.model';
@@ -169,8 +169,14 @@ export class ProductsComponent implements OnInit {
                         ;
                     }
                 },
-                err => {
-                    this.showNotification('bottom', 'right', 0, err.error);
+                (err: HttpErrorResponse) => {
+                    console.log(err);
+                    if (err.status === 500) {
+                        this.showNotification('bottom', 'right', 0, 'Erreur system');
+                    } else {
+                        this.showNotification('bottom', 'right', 0, 'Erreur inconnu');
+                    }
+
                 }
             )
         ;
