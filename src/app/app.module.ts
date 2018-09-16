@@ -8,7 +8,6 @@ import {AppRoutingModule} from './app.routing';
 import {ComponentsModule} from './components/components.module';
 
 import {AppComponent} from './app.component';
-import {AgmCoreModule} from '@agm/core';
 import {AdminLayoutComponent} from './layouts/admin-layout/admin-layout.component';
 import {AdminService} from './services/admin.service';
 import {ClientService} from './services/client.service';
@@ -24,6 +23,7 @@ import {NgProgressModule} from '@ngx-progressbar/core';
 import {NgProgressHttpModule} from '@ngx-progressbar/http';
 import {NgProgressRouterModule} from '@ngx-progressbar/router';
 
+
 @NgModule({
     imports: [
         BrowserAnimationsModule,
@@ -37,21 +37,19 @@ import {NgProgressRouterModule} from '@ngx-progressbar/router';
         MatIconModule,
         MatButtonModule,
         MatDialogModule,
-
-        AgmCoreModule.forRoot({
-            apiKey: 'YOUR_GOOGLE_MAPS_API_KEY'
-        }),
         NgProgressModule.forRoot({
             color: 'red',
             thick: true
         }),
         NgProgressHttpModule.forRoot(),
         NgProgressRouterModule.forRoot()
+
     ],
     declarations: [
         AppComponent,
         AdminLayoutComponent,
         SignInComponent
+
     ],
     providers: [AdminService, ClientService, ConfigService, ProductService, SubproductService, AuthService, AuthGuard,
         {

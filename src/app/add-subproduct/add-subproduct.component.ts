@@ -1,20 +1,22 @@
-import {Component, OnInit, Pipe, PipeTransform} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {SubproductService} from '../services/subproduct.service';
 import {ProductService} from '../services/product.service';
 import {HttpErrorResponse} from '@angular/common/http';
+
 
 declare var $: any;
 
 @Component({
     selector: 'app-add-subproduct',
     templateUrl: './add-subproduct.component.html',
-    styleUrls: ['./add-subproduct.component.scss']
+    styleUrls: ['./add-subproduct.component.css']
 })
 export class AddSubproductComponent implements OnInit {
 
     productList: any;
     selectedItem: number;
+    query: any;
     constructor(public router: Router, public subproductservice: SubproductService, public productservice: ProductService) {
     }
 
@@ -82,27 +84,5 @@ export class AddSubproductComponent implements OnInit {
                 }
             )
         ;
-    }
-}
-
-@Pipe({
-    name: 'LockFilter'
-})
-
-export class SearchPipe implements PipeTransform {
-    transform(value: any, args?: any): any {
-
-        if (!value) {
-            return null;
-        }
-        if (!args) {
-            return value;
-        }
-
-        args = args.toLowerCase();
-
-        return value.filter(function (item) {
-            return JSON.stringify(item).toLowerCase().includes(args);
-        });
     }
 }

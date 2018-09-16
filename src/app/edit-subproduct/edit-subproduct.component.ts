@@ -1,4 +1,4 @@
-import {Component, OnInit, Pipe, PipeTransform} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {HttpErrorResponse} from '@angular/common/http';
 import {Router} from '@angular/router';
 import {SubproductService} from '../services/subproduct.service';
@@ -17,7 +17,7 @@ export class EditSubproductComponent implements OnInit {
     productList: any;
     selectedItem: number;
     subProduct: Subproduct = new Subproduct(null, 'test', 'test', '00:00', '00:00', 0, 'test');
-
+    query: any;
     constructor(public router: Router, public subproductservice: SubproductService, public productservice: ProductService) {
     }
 
@@ -88,7 +88,7 @@ export class EditSubproductComponent implements OnInit {
     }
 }
 
-@Pipe({
+/*@Pipe({
     name: 'LockFilter'
 })
 
@@ -108,4 +108,4 @@ export class SearchPipe implements PipeTransform {
             return JSON.stringify(item).toLowerCase().includes(args);
         });
     }
-}
+}*/

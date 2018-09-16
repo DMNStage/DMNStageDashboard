@@ -1,8 +1,18 @@
 <div class="main-content">
     <div class="container-fluid">
         <div class="row">
+            <div class="card" style="margin-bottom: 10px !important;">
+                <div class="card-header card-header-danger"
+                     style="margin-right: 0 !important;margin-left: 0 !important;">
+                    <h4 class="card-title">Ajouter un sous produit</h4>
+                </div>
+            </div>
             <div class="col-sm-4">
                 <div class="card">
+                    <div class="card-header" style="margin-bottom: -10px !important;">
+                        <h4 class="card-title">Produit</h4>
+                        <p class="card-category">Le produit auquel appartient ce sous-produit</p>
+                    </div>
                     <div class="card-body">
                         <div class="row">
                             <div class="form-group col-12">
@@ -35,6 +45,10 @@
             </div>
             <div class="col-sm-8">
                 <div class="card">
+                    <div class="card-header" style="margin-bottom: -10px !important;">
+                        <h4 class="card-title">Sous-Produit</h4>
+                        <p class="card-category">Les information du sous-produit</p>
+                    </div>
                     <div class="card-body">
                         <form #f="ngForm" (ngSubmit)="onSaveSubProduct(f.value)">
                             <div class="row">
@@ -80,12 +94,14 @@
                             <div class="row">
                                 <div class="form-group col-sm-6">
                                     <mat-form-field>
-                                        <input matInput placeholder="Le pas" type="number" ngModel name="step"/>
+                                        <input matInput placeholder="Le pas" type="number" ngModel name="step"
+                                               required/>
                                     </mat-form-field>
                                 </div>
                                 <div class="form-group col-sm-6">
                                     <mat-form-field>
-                                        <input matInput placeholder="Extension" type="text" ngModel name="ext"/>
+                                        <input matInput placeholder="Extension" type="text" ngModel name="ext"
+                                               required/>
                                     </mat-form-field>
                                 </div>
                             </div>

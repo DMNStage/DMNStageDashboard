@@ -4,15 +4,19 @@ import {Token} from '../model/token.model';
 import {Router} from '@angular/router';
 import {catchError, map} from 'rxjs/operators';
 import {of} from 'rxjs';
+import * as SecureLS from 'secure-ls';
 
 @Injectable()
 export class AuthService {
 
-    host = 'https://api.dmnstage.com';
+    readonly host = 'https://api.dmnstage.com';
     // readonly host = 'http://localhost:8088';
 
     private readonly tokenLocalStorageDataKey = 'TokenData';
-    private readonly clientId = 'ClientId';
+    private readonly clientId = 'QWRtaW5BcHA=';
+    private readonly secret = 'c2VjcmV0';
+
+    private ls = new SecureLS({encodingType: 'aes'});
 
     constructor(public http: HttpClient, private router: Router) {
     }
@@ -23,22 +27,12 @@ export class AuthService {
         data = data.set('password', password);
         data = data.set('grant_type', 'password');
 
-        const clientId = 'Q2xpZW50SWQ=';
-        const secret = 'c2VjcmV0';
         const reqHeader = new HttpHeaders({
             'Content-Type': 'application/x-www-form-urlencoded',
-            'Authorization': 'Basic ' + btoa(atob(clientId) + ':' + atob(secret)),
+            'Authorization': 'Basic ' + btoa(atob(this.clientId) + ':' + atob(this.secret)),
             'No-Auth': 'true'
         });
         return this.http.post<Token>(this.host + '/oauth/token', data, {headers: reqHeader})
-    }
-
-    getTokenDataFromLocalStorage(): Token {
-        try {
-            return JSON.parse(localStorage.getItem(this.tokenLocalStorageDataKey));
-        } catch (e) {
-            return null;
-        }
     }
 
     checkTokenData(data: Token) {
@@ -74,16 +68,14 @@ export class AuthService {
 
     getNewTokenDataFromRefreshToken(refreshtoken: string) {
 
-        console.log('getting new access token from refresh token')
+        console.log('getting new access token from refresh token');
         let data = new HttpParams();
         data = data.set('refresh_token', refreshtoken);
         data = data.set('grant_type', 'refresh_token');
 
-        const clientId = 'Q2xpZW50SWQ=';
-        const secret = 'c2VjcmV0';
         const reqHeader = new HttpHeaders({
             'Content-Type': 'application/x-www-form-urlencoded',
-            'Authorization': 'Basic ' + btoa(atob(clientId) + ':' + atob(secret)),
+            'Authorization': 'Basic ' + btoa(atob(this.clientId) + ':' + atob(this.secret)),
             'No-Auth': 'true'
         });
         return this.http.post<Token>(this.host + '/oauth/token', data, {headers: reqHeader})
@@ -92,7 +84,18 @@ export class AuthService {
 
     storeTokenData(data: Token) {
         console.log('Storing token to local storage');
-        localStorage.setItem(this.tokenLocalStorageDataKey, JSON.stringify(data));
+        this.ls.set(this.tokenLocalStorageDataKey, JSON.stringify(data));
+        localStorage.setItem('debug_' + this.tokenLocalStorageDataKey, JSON.stringify(data));
+    }
+
+    getTokenDataFromLocalStorage(): Token {
+        try {
+            return JSON.parse(this.ls.get(this.tokenLocalStorageDataKey));
+            // return JSON.parse(localStorage.getItem(this.tokenLocalStorageDataKey));
+        } catch (e) {
+            console.log('Can\t get tokenData from localStorage');
+            return null;
+        }
     }
 
     clearTokenData() {

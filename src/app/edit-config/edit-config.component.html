@@ -4,6 +4,9 @@
             <div class="col-sm-12">
                 <!--<div class="container margin-top">-->
                 <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title">Configuration de l'Hôte</h4>
+                    </div>
                     <div class="card-body">
                         <div class="col-sm-12">
                             <form #hostForm="ngForm" (ngSubmit)="onEditConfig(hostForm.value)">
@@ -34,6 +37,9 @@
                     </div>
                 </div>
                 <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title">Configuration du chemin des images</h4>
+                    </div>
                     <div class="card-body">
                         <div class="col-sm-12">
                             <form #pathFormatForm="ngForm" (ngSubmit)="onEditConfig(pathFormatForm.value)">
@@ -44,12 +50,14 @@
                                 <div class="row">
                                     <div class="form-group col-10">
                                         <mat-form-field>
-                                            <input matInput placeholder="Format des images" type="text" name="value"
+                                            <input matInput placeholder="Structure du chemin des images" type="text"
+                                                   name="value"
                                                    #pathFormatValue="ngModel" [(ngModel)]="pathFormat.value" required/>
                                         </mat-form-field>
                                         <div *ngIf="pathFormatValue.invalid && (pathFormatValue.dirty || pathFormatValue.touched)"
                                              class="alert alert-danger">
-                                            <div *ngIf="pathFormatValue.errors.required">- L'hôte est requis.</div>
+                                            <div *ngIf="pathFormatValue.errors.required">- La structure est requis.
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="form-group col-2">

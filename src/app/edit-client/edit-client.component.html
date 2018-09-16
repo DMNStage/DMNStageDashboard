@@ -18,8 +18,18 @@
 <div class="main-content">
     <div class="container-fluid">
         <div class="row">
+            <div class="card" style="margin-bottom: 10px !important;">
+                <div class="card-header card-header-danger"
+                     style="margin-right: 0 !important;margin-left: 0 !important;">
+                    <h4 class="card-title">Modifier un Client</h4>
+                </div>
+            </div>
             <div class="col-sm-4">
                 <div class="card">
+                    <div class="card-header" style="margin-bottom: -10px !important;">
+                        <h4 class="card-title">Produit</h4>
+                        <p class="card-category">Les produits que le client ira accès</p>
+                    </div>
                     <div class="card-body">
                         <div class="col-12">
                             <div class="form-group">
@@ -36,6 +46,10 @@
             <div class="col-sm-8">
                 <!--<div class="container margin-top">-->
                 <div class="card">
+                    <div class="card-header" style="margin-bottom: -10px !important;">
+                        <h4 class="card-title">Client</h4>
+                        <p class="card-category">Les information du client</p>
+                    </div>
                     <div class="card-body">
                         <form #f="ngForm" (ngSubmit)="onEditClient(f.value)">
                             <div class="form-group" hidden>
@@ -112,7 +126,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="form-group col-6">
+                                <div class="form-group col-12">
                                     <div class="card">
                                         <div class="card-header">
                                             <h4 class="card-title">Produit:</h4>
