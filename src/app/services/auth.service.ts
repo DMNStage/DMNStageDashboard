@@ -106,7 +106,7 @@ export class AuthService {
     revokeToken(tokenData: Token) {
 
         let body = new HttpParams();
-        body = body.set('clientid', this.clientId);
+        body = body.set('clientid', atob(this.clientId));
         body = body.set('username', tokenData.username);
         body = body.set('access_token', tokenData.access_token);
         return this.http.post(this.host + '/revoke_token', body);
