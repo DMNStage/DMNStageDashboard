@@ -7,7 +7,7 @@ export class Admin {
     phone: string = '';
     firstName: string = '';
     lastName: string = '';
-    active: boolean = false;
+    active: boolean = true;
 
     constructor() {
     }

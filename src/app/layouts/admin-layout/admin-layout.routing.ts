@@ -80,7 +80,7 @@ export const AdminLayoutRoutes: Routes = [
     {path: 'config', component: ConfigComponent, canActivate: [AuthGuard]},
     {path: 'editconfig', component: EditConfigComponent, canActivate: [AuthGuard]},
     {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
-    { path: 'user-profile',   component: UserProfileComponent },
+    {path: 'user-profile', component: UserProfileComponent, canActivate: [AuthGuard]},
     { path: 'table-list',     component: TableListComponent },
     { path: 'typography',     component: TypographyComponent },
     { path: 'icons',          component: IconsComponent },

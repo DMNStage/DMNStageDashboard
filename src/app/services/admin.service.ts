@@ -20,6 +20,10 @@ export class AdminService {
         return this.http.get(this.authservice.host + '/users/' + id);
     }
 
+    getAdminByUsername(username: string) {
+        return this.http.get(this.authservice.host + '/usersbyusername/' + username);
+    }
+
     saveAdmin(admin: Admin) {
         return this.http.post(this.authservice.host + '/users/admin', admin);
     }

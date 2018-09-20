@@ -1,105 +1,108 @@
 <div class="main-content">
-  <div class="container-fluid">
-      <div class="row">
-          <div class="col-md-8">
-              <div class="card">
-                  <div class="card-header card-header-danger">
-                      <h4 class="card-title">Edit Profile</h4>
-                      <p class="card-category">Complete your profile</p>
-                  </div>
-                  <div class="card-body">
-                      <form>
-                          <div class="row">
-                              <div class="col-md-5">
-                                <mat-form-field class="example-full-width">
-                                    <input matInput placeholder="Company (disabled)" disabled>
-                                  </mat-form-field>
-                              </div>
-                              <div class="col-md-3">
-                                  <mat-form-field class="example-full-width">
-                                    <input matInput placeholder="Username">
-                                  </mat-form-field>
-                              </div>
-                              <div class="col-md-4">
-                                  <mat-form-field class="example-full-width">
-                                    <input matInput placeholder="Email address" type="email">
-                                  </mat-form-field>
-                              </div>
-                          </div>
-                          <div class="row">
-                              <div class="col-md-6">
-                                <mat-form-field class="example-full-width">
-                                  <input matInput placeholder="Fist Name" type="text">
-                                </mat-form-field>
-                              </div>
-                              <div class="col-md-6">
-                                <mat-form-field class="example-full-width">
-                                  <input matInput placeholder="Last Name" type="text">
-                                </mat-form-field>
-                              </div>
-                          </div>
-                          <div class="row">
-                              <div class="col-md-12">
-                                <mat-form-field class="example-full-width">
-                                  <input matInput placeholder="Adress" type="text">
-                                </mat-form-field>
-                              </div>
-                          </div>
-                          <div class="row">
-                              <div class="col-md-4">
-                                <mat-form-field class="example-full-width">
-                                  <input matInput placeholder="City" type="text">
-                                </mat-form-field>
-                              </div>
-                              <div class="col-md-4">
-                                <mat-form-field class="example-full-width">
-                                  <input matInput placeholder="Country" type="text">
-                                </mat-form-field>
-                              </div>
-                              <div class="col-md-4">
-                                <mat-form-field class="example-full-width">
-                                  <input matInput placeholder="Postal Code" type="text">
-                                </mat-form-field>
-                              </div>
-                          </div>
-                          <div class="row">
-                              <div class="col-md-12">
-                                <label>About Me</label>
-                                <mat-form-field class="example-full-width">
-                                   <textarea matInput placeholder="Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo."></textarea>
-                                 </mat-form-field>
-                                  <!-- <div class="form-group">
-
-                                      <div class="form-group">
-                                          <label class="bmd-label-floating"> Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</label>
-                                          <textarea class="form-control" rows="5"></textarea>
-                                      </div>
-                                  </div> -->
-                              </div>
-                          </div>
-                          <button mat-raised-button type="submit" class="btn btn-danger pull-right">Update Profile</button>
-                          <div class="clearfix"></div>
-                      </form>
-                  </div>
-              </div>
-          </div>
-          <div class="col-md-4">
-              <div class="card card-profile">
-                  <div class="card-avatar">
-                      <a href="#pablo">
-                          <img class="img" src="../assets/img/faces/marc.jpg" />
-                      </a>
-                  </div>
-                  <div class="card-body">
-                      <h6 class="card-category text-gray">CEO / Co-Founder</h6>
-                      <h4 class="card-title">Alec Thompson</h4>
-                      <p class="card-description">
-                          Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
-                      </p>
-                      <a href="#pablo" class="btn btn-danger btn-round">Follow</a>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="container margin-top">
+                    <div class="card">
+                        <div class="card-header card-header-danger">
+                            <h4 class="card-title">Modifier un admin</h4>
+                        </div>
+                        <div class="card-body">
+                            <form #f="ngForm" (ngSubmit)="onEditAdmin(f.value)">
+                                <div class="form-group" hidden>
+                                    <label>id: </label>
+                                    <input class="form-control" type="text" name="id" [(ngModel)]="admin.id"/>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-sm-6">
+                                        <mat-form-field>
+                                            <input matInput placeholder="Pseudo" type="text" name="username"
+                                                   #username="ngModel" [(ngModel)]="admin.username" minlength="5"
+                                                   required/>
+                                        </mat-form-field>
+                                        <div *ngIf="username.invalid && (username.dirty || username.touched)"
+                                             class="alert alert-danger">
+                                            <div *ngIf="username.errors.required">- Le pseudo est requis.</div>
+                                            <div *ngIf="username.errors.minlength">- Le pseudo doit etre former par au
+                                                moin 5 caractere.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <mat-form-field>
+                                            <input matInput placeholder="Mot de passe" type="text" name="password"
+                                                   #password="ngModel" ngModel minlength="5"/>
+                                        </mat-form-field>
+                                        <div class="alert alert-info">
+                                            Laissez la case vide si vous ne voulez pas changer le mot de passe, ou
+                                            entrez un mot de passe de 5 caractere minimum.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-sm-6">
+                                        <mat-form-field>
+                                            <input matInput placeholder="Nom" type="text" name="firstName"
+                                                   #firstName="ngModel" [(ngModel)]="admin.firstName"
+                                                   required/>
+                                        </mat-form-field>
+                                        <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)"
+                                             class="alert alert-danger">
+                                            <div *ngIf="firstName.errors.required">Le nom est requis.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <mat-form-field>
+                                            <input matInput placeholder="Prenom" type="text" name="lastName"
+                                                   #lastName="ngModel" [(ngModel)]="admin.lastName"
+                                                   required/>
+                                        </mat-form-field>
+                                        <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)"
+                                             class="alert alert-danger">
+                                            <div *ngIf="lastName.errors.required">Le prenom est requis.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-sm-6">
+                                        <mat-form-field>
+                                            <input matInput placeholder="Email" type="email" ngModel name="email"
+                                                   #email="ngModel" [(ngModel)]="admin.email" email/>
+                                        </mat-form-field>
+                                        <div *ngIf="email.invalid && (email.dirty || email.touched)"
+                                             class="alert alert-danger">
+                                            <div *ngIf="email.errors.email">- Veuillez entrer un valide email.</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <mat-form-field>
+                                            <input matInput placeholder="Telephone" type="text"
+                                                   [(ngModel)]="admin.phone" name="phone"/>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="row" hiden>
+                                    <div class="form-group col-sm-6">
+                                        <!--<label for="checked">Compte</label>-->
+                                        <mat-radio-group [(ngModel)]="checked" name="active" id="active"
+                                                         style="display: table">
+                                            <mat-radio-button value="true" style="margin-right: 10px;">
+                                                Compte actif
+                                            </mat-radio-button>
+                                        </mat-radio-group>
+                                    </div>
+                                </div>
+                                <button mat-raised-button id="submit" [disabled]="!f.valid" class="btn btn-success"
+                                        type="submit">
+                                    Save
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
