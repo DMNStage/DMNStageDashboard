@@ -71,6 +71,43 @@
                         </div>
                     </div>
                 </div>
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title">Configuration de l'email de contact</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="col-sm-12">
+                            <form #contactEmailForm="ngForm" (ngSubmit)="onEditConfig(contactEmailForm.value)">
+                                <div class="form-group" hidden>
+                                    <label>key: </label>
+                                    <input class="form-control" type="text" name="key" [(ngModel)]="contactEmail.key"/>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-10">
+                                        <mat-form-field>
+                                            <input matInput placeholder="Email" type="text"
+                                                   name="value"
+                                                   #contactEmailValue="ngModel" [(ngModel)]="contactEmail.value"
+                                                   required/>
+                                        </mat-form-field>
+                                        <div *ngIf="contactEmailValue.invalid && (contactEmailValue.dirty || contactEmailValue.touched)"
+                                             class="alert alert-danger">
+                                            <div *ngIf="contactEmailValue.errors.required">- L'email est est requis.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-2">
+                                        <button mat-icon-button id="contactEmailSubmit"
+                                                [disabled]="!contactEmailForm.valid"
+                                                type="submit">
+                                            <mat-icon>create</mat-icon>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
                 <!--</div>-->
             </div>
         </div>

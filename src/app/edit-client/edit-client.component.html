@@ -76,7 +76,7 @@
                                         <input matInput placeholder="Mot de passe" type="text" name="password"
                                                #password="ngModel" ngModel minlength="5"/>
                                     </mat-form-field>
-                                    <div class="alert alert-info">
+                                    <div class="alert" style="background-color:#eeeeee;color:#595959">
                                         Laissez la case vide si vous ne voulez pas changer le mot de passe, ou
                                         entrez un mot de passe de 5 caractere minimum.
                                     </div>
@@ -141,7 +141,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <button mat-raised-button id="submit" [disabled]="!f.valid" class="btn btn-success"
+                            <button mat-raised-button id="submit" [disabled]="!f.valid" class="btn btn-danger"
                                     type="submit">
                                 Save
                             </button>

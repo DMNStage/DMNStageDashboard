@@ -9,8 +9,8 @@ import * as SecureLS from 'secure-ls';
 @Injectable()
 export class AuthService {
 
-    // readonly host = 'https://api.dmnstage.com';
-    readonly host = 'http://localhost:8088';
+    readonly host = 'https://api.dmnstage.com';
+    // readonly host = 'http://localhost:8088';
 
     private readonly tokenLocalStorageDataKey = 'TokenData';
     private readonly clientId = 'QWRtaW5BcHA=';
